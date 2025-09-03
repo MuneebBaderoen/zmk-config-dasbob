@@ -1,19 +1,38 @@
 # Copyright (c) 2021 The ZMK Contributors
 # SPDX-License-Identifier: MIT
 
-if SHIELD_DASBOB_LEFT
-
+# Keyboard name
 config ZMK_KEYBOARD_NAME
 	default "Muneeb's Dasbob"
 
-config ZMK_SPLIT_ROLE_CENTRAL
-	default y
-
-endif
-
-if SHIELD_DASBOB_LEFT || SHIELD_DASBOB_RIGHT
-
+# Always enable split
 config ZMK_SPLIT
+	bool
 	default y
 
-endif
+# Central role
+config ZMK_SPLIT_ROLE_CENTRAL
+	bool
+	default y if SHIELD_DASBOB_LEFT || SHIELD_DASBOB_DONGLE
+
+# Peripheral role
+config ZMK_SPLIT_ROLE_PERIPHERAL
+	bool
+	default y if SHIELD_DASBOB_RIGHT || SHIELD_DASBOB_LEFT_PERIPHERAL || SHIELD_DASBOB_RIGHT_PERIPHERAL
+
+# Dongle-specific
+config ZMK_SPLIT_BLE_CENTRAL_PERIPHERALS
+	int	
+	default 2 if SHIELD_DASBOB_DONGLE
+
+config ZMK_USB_ENABLED
+    bool
+    default y if SHIELD_DASBOB_DONGLE
+
+config ZMK_LOG_ENABLED
+    bool
+    default y if SHIELD_DASBOB_DONGLE
+
+config USB_DEVICE_PRODUCT
+    string
+    default "Dasbob Dongle" if SHIELD_DASBOB_DONGLE
