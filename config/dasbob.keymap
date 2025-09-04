@@ -16,25 +16,46 @@
     };
 
     macros {
-        repeat: repeat {
+        save: save {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&kp NUMBER_2 &kp NUMBER_4 &kp NUMBER_2 &kp NUMBER_4 &kp NUMBER_2 &kp NUMBER_4>;
-            label = "REPEAT";
+            bindings = <&kp LEFT_GUI &kp S>;
+            label = "SAVE";
         };
 
-        snip: snip {
+        cut: cut {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&kp LSHFT &kp LEFT_GUI &kp S>;
-            label = "SNIP";
+            bindings = <&kp LEFT_GUI &kp X>;
+            label = "CUT";
         };
 
-        lock: lock {
+        copy: copy {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&kp LEFT_GUI &kp L>;
-            label = "LOCK";
+            bindings = <&kp LEFT_GUI &kp S>;
+            label = "COPY";
+        };
+
+        paste: paste {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LEFT_GUI &kp V>;
+            label = "PASTE";
+        };
+
+        undo: undo {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LEFT_GUI &kp Z>;
+            label = "UNDO";
+        };
+
+        select_all: select_all {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LEFT_GUI &kp A>;
+            label = "SELECT_ALL";
         };
     };
 
@@ -52,9 +73,18 @@
             >;
         };
 
+        Nav {
+            bindings = <
+&trans  &trans       &trans   &trans  &trans  &trans  &trans    &trans    &trans  &trans
+&trans  &select_all  &save    &copy   &trans  &trans  &kp LEFT  &kp DOWN  &kp UP  &kp RIGHT
+&trans  &undo        &cut     &paste  &trans  &trans  &trans    &trans    &trans  &trans
+                     &trans   &trans  &trans  &trans  &trans    &trans
+            >;
+        };
+
         Num {
             bindings = <
-&trans        &trans        &repeat  &snip   &lock           &kp F1   &kp F2   &kp F3  &kp F4  &kp F5
+&trans        &trans        &trans   &trans  &trans          &kp F1   &kp F2   &kp F3  &kp F4  &kp F5
 &kp NUMBER_1  &kp N2        &kp N3   &kp N4  &kp N5          &kp F6   &kp F7   &kp F8  &kp F9  &kp F10
 &kp NUMBER_6  &kp NUMBER_7  &kp N8   &kp N9  &kp N0          &kp F11  &kp F12  &trans  &trans  &trans
                             &trans   &trans  &kp LEFT_SHIFT  &trans   &trans   &trans

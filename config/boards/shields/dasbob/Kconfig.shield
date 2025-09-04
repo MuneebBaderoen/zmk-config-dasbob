@@ -6,3 +6,12 @@ config SHIELD_DASBOB_LEFT
 
 config SHIELD_DASBOB_RIGHT
 	def_bool $(shields_list_contains,dasbob_right)
+
+config SHIELD_DASBOB_DONGLE
+	def_bool $(shields_list_contains,dasbob_dongle)
+
+config SHIELD_DASBOB_LEFT_PERIPHERAL
+	def_bool $(shields_list_contains,dasbob_left_peripheral)
+	
+config SHIELD_DASBOB_RIGHT_PERIPHERAL
+	def_bool $(shields_list_contains,dasbob_right_peripheral)
