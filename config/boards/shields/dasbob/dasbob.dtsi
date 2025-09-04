@@ -64,10 +64,3 @@
 	};
 
 };
-
-/* Right half (central or peripheral) */
-#if defined(SHIELD_DASBOB_RIGHT) || defined(SHIELD_DASBOB_RIGHT_PERIPHERAL)
-&default_transform {
-    col-offset = <18>;
-};
-#endif
