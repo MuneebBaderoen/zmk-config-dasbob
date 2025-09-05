@@ -13,16 +13,6 @@
 		zmk,matrix_transform = &default_transform;
 	};
 
-	combos {
-        compatible = "zmk,combos";
-
-        combo_bootloader {
-            timeout-ms = <50>;
-            key-positions = <4 22>;
-            bindings = <&bootloader>;
-        };
-    };
-
 	default_transform: keymap_transform_0 {
 		compatible = "zmk,matrix-transform";
 		columns = <36>;
@@ -64,3 +54,4 @@
 	};
 
 };
+

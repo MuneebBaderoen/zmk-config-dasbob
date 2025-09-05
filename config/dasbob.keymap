@@ -15,6 +15,16 @@
         };
     };
 
+    combos {
+        compatible = "zmk,combos";
+
+        bootloader_combo {
+            timeout-ms = <50>;  // max delay between keys
+            key-positions = <4 5>; // key matrix positions for MINUS and J
+            bindings = <&bootloader>;
+        };
+    };
+
     macros {
         save: save {
             compatible = "zmk,behavior-macro";
@@ -66,46 +76,46 @@
 
         Base {
             bindings = <
-&kp Q  &kp Y              &kp O            &kp U             &kp MINUS      &kp J      &kp G             &kp N           &kp F    &kp K
-&kp H  &kp I              &hm LEFT_GUI E   &hm LEFT_SHIFT A  &kp DOT        &kp P      &hm LEFT_SHIFT D  &hm LEFT_GUI R  &kp S    &kp L
-&kp X  &kp DOUBLE_QUOTES  &kp SLASH        &kp COMMA         &kp SEMICOLON  &kp B      &kp C             &kp M           &kp W    &kp V
-                          &kp ESCAPE       &lt 1 T           &lt 3 SPACE    &kp ENTER  &lt 2 SPACE       &kp BACKSPACE
+&kp Q  &kp Y             &kp O            &kp U             &kp MINUS      /**/  &kp J      &kp G      &kp N  &kp F    &kp K
+&kp H  &kp I             &kp E            &kp A             &kp DOT        /**/  &kp P      &kp D      &kp R  &kp S    &kp L
+&kp X  &kp SINGLE_QUOTE  &kp SLASH        &kp COMMA         &kp SEMICOLON  /**/  &kp B      &kp C      &kp M  &kp W    &kp V
+                         &sl 2            &lt 1 T           &kp TAB        /**/  &kp ENTER  &kp SPACE  &sl 3
             >;
         };
 
         Nav {
             bindings = <
-&trans  &trans       &trans   &trans  &trans  &trans  &trans    &trans    &trans  &trans
-&trans  &select_all  &save    &copy   &trans  &trans  &kp LEFT  &kp DOWN  &kp UP  &kp RIGHT
-&trans  &undo        &cut     &paste  &trans  &trans  &trans    &trans    &trans  &trans
-                     &trans   &trans  &trans  &trans  &trans    &trans
+&trans     &trans     &trans    &trans     &trans  /**/  &trans  &trans    &trans    &trans  &trans  
+&trans     &kp LG(A)  &kp LG(S) &kp LG(C)  &trans  /**/  &trans  &kp LEFT  &kp DOWN  &kp UP  &kp RIGHT
+&kp LG(W)  &kp LG(Z)  &kp LG(X) &kp LG(V)  &trans  /**/  &trans  &trans    &trans    &trans  &trans
+                      &trans    &trans     &trans  /**/  &trans  &trans    &trans
             >;
         };
 
         Num {
             bindings = <
-&trans        &trans        &trans   &trans  &trans          &kp F1   &kp F2   &kp F3  &kp F4  &kp F5
-&kp NUMBER_1  &kp N2        &kp N3   &kp N4  &kp N5          &kp F6   &kp F7   &kp F8  &kp F9  &kp F10
-&kp NUMBER_6  &kp NUMBER_7  &kp N8   &kp N9  &kp N0          &kp F11  &kp F12  &trans  &trans  &trans
-                            &trans   &trans  &kp LEFT_SHIFT  &trans   &trans   &trans
+&trans    &trans     &trans    &trans     &trans  /**/  &trans  &kp N7  &kp N8  &kp N9  &kp Z
+&sk LALT  &sk LCTRL  &sk LGUI  &sk LSHFT  &trans  /**/  &trans  &kp N4  &kp N5  &kp N6  &kp F9 
+&trans    &trans     &trans    &trans     &trans  /**/  &kp N0  &kp N1  &kp N2  &kp N3  &trans  
+                     &trans    &trans     &trans  /**/  &trans  &trans  &trans
             >;
         };
 
         Sym {
             bindings = <
-&kp DOUBLE_QUOTES  &kp LS(LEFT_BRACKET)  &kp LS(RIGHT_BRACKET)  &kp LEFT_BRACKET  &kp RIGHT_BRACKET  &kp LC(X)         &kp LC(C)  &kp UP         &kp LC(V)  &trans
-&kp LS(NUMBER_1)   &kp LS(NUMBER_2)      &kp LS(NUMBER_3)       &kp LS(NUMBER_4)  &kp LS(N5)         &kp SINGLE_QUOTE  &kp LEFT   &kp DOWN       &kp RIGHT  &trans
-&kp LS(NUMBER_6)   &kp LS(N7)            &kp LS(N8)             &kp LS(N9)        &kp LS(N0)         &kp MINUS         &kp EQUAL  &kp BACKSLASH  &kp GRAVE  &trans
-                                         &trans                 &trans            &kp LSHFT          &trans            &trans     &trans
+&kp DOUBLE_QUOTES  &kp LS(LEFT_BRACKET)  &kp LS(RIGHT_BRACKET)  &kp LEFT_BRACKET  &kp RIGHT_BRACKET  /**/  &kp LC(X)         &kp LC(C)  &kp UP         &kp LC(V)  &trans
+&kp LS(NUMBER_1)   &kp LS(NUMBER_2)      &kp LS(NUMBER_3)       &kp LS(NUMBER_4)  &kp LS(N5)         /**/  &kp SINGLE_QUOTE  &sk LSHFT  &sk LGUI       &sk LCTRL  &sk LALT
+&kp LS(NUMBER_6)   &kp LS(N7)            &kp LS(N8)             &kp LS(N9)        &kp LS(N0)         /**/  &kp MINUS         &kp EQUAL  &kp BACKSLASH  &kp GRAVE  &trans
+                                         &trans                 &trans            &kp LSHFT          /**/  &trans            &trans     &trans
             >;
         };
 
         Misc {
             bindings = <
-&trans  &trans  &trans  &kp LS(Z)  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &kp LS(Y)  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans     &trans  &trans  &trans  &trans  &trans  &trans
-                &trans  &trans     &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &kp LS(Z)  &trans  /**/  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &kp LS(Y)  &trans  /**/  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans     &trans  /**/  &trans  &trans  &trans  &trans  &trans
+                &trans  &trans     &trans  /**/  &trans  &trans  &trans
             >;
         };
     };

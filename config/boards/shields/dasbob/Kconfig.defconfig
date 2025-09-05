@@ -53,3 +53,22 @@ config ZMK_USB_LOGGING
 config USB_CDC_ACM
 	bool
 	default y if SHIELD_DASBOB_DONGLE
+
+# Enable deep sleep, but only after long inactivity
+config ZMK_SLEEP
+    bool
+    default y if SHIELD_DASBOB_LEFT_PERIPHERAL || SHIELD_DASBOB_RIGHT_PERIPHERAL
+
+config ZMK_DEEP_SLEEP
+    bool
+    default y if SHIELD_DASBOB_LEFT_PERIPHERAL || SHIELD_DASBOB_RIGHT_PERIPHERAL
+
+# Timeout before going to suspend (light sleep)
+config ZMK_IDLE_SLEEP_TIMEOUT
+    int
+    default 30000 if SHIELD_DASBOB_LEFT_PERIPHERAL || SHIELD_DASBOB_RIGHT_PERIPHERAL  # 30s
+
+# Timeout before going to deep sleep (from suspend)
+config ZMK_DEEP_SLEEP_TIMEOUT
+    int
+    default 3600000 if SHIELD_DASBOB_LEFT_PERIPHERAL || SHIELD_DASBOB_RIGHT_PERIPHERAL  # 1h
