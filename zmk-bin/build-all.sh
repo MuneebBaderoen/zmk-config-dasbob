@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+
 set -euo pipefail
 
 BUILD_SCRIPT="/zmk-bin/build.sh"

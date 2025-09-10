@@ -1,5 +1,6 @@
 #!/bin/bash
-set -e
+
+set -euo pipefail
 
 # --- Update west ---
 west update

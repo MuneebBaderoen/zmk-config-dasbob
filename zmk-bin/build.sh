@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
+
 set -euo pipefail
 
-# Default values
-BOARD="nice_nano_v2"
-SHIELD="dasbob_dongle"
+# Default values from environment variables if set
+BOARD="${DEFAULT_BOARD:-}"
+SHIELD="${DEFAULT_SHIELD:-}"
 SNIPPET=""
 BUILD_DIR=""          # will be set dynamically
 CONFIG_DIR="/zmk-config"
@@ -16,8 +17,8 @@ usage() {
 Usage: $0 [options]
 
 Options:
-  --board <name>         Board name (default: $BOARD)
-  --shield <name>        Shield name (default: $SHIELD)
+  --board <name>         Board name (default: \$DEFAULT_BOARD)
+  --shield <name>        Shield name (default: \$DEFAULT_SHIELD)
   --snippet <name>       ZMK snippet to apply (default: none)
   --pristine             Perform a pristine build (delete previous build dir)
   --debug                Enable west debug logging
@@ -39,6 +40,19 @@ while [[ $# -gt 0 ]]; do
   esac
 done
 
+# --- Validation ---
+if [[ -z "$BOARD" ]]; then
+    echo "Error: --board must be provided or DEFAULT_BOARD must be set"
+    usage
+    exit 1
+fi
+
+if [[ -z "$SHIELD" ]]; then
+    echo "Error: --shield must be provided or DEFAULT_SHIELD must be set"
+    usage
+    exit 1
+fi
+
 # Set build directory based on shield
 BUILD_DIR="build/$SHIELD"
 
@@ -58,7 +72,7 @@ west build $WEST_FLAGS -d "$BUILD_DIR" -- $CMAKE_FLAGS
 mkdir -p "$OUT_DIR"
 
 # Copy and rename the UF2
-cp "$BUILD_DIR/zephyr/zephyr.uf2" "$OUT_DIR/${SHIELD}_${BOARD}.uf2"
+cp "$BUILD_DIR/zephyr/zmk.uf2" "$OUT_DIR/${SHIELD}_${BOARD}.uf2"
 
 echo "Build complete!"
 echo "UF2 file copied to: $OUT_DIR/${SHIELD}_${BOARD}.uf2"

@@ -1,5 +1,6 @@
 #!/bin/bash
-set -e
+
+set -euo pipefail
 
 WORKSPACE=/zmk-workspace
 CONFIG_DIR=/zmk-config

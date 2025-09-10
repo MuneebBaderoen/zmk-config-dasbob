@@ -2,9 +2,7 @@ version: '3.8'
 
 services:
   zmk-build:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: zmkfirmware/zmk-build-arm:3.5-branch
     volumes:
       - zmk-workspace:/zmk-workspace # named volume for persistence
       - ./zmk-out:/zmk-out
@@ -16,7 +14,7 @@ services:
     working_dir: /zmk-workspace
     tty: true
     entrypoint: /bin/bash
-    # command: ["/zmk-bin/build.sh"] 
 
 volumes:
-  zmk-workspace:   # named anonymous volume
+  zmk-workspace:
+    name: zmk-workspace

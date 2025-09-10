@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
-set -e
+
+set -euo pipefail
 
 # --- User parameters ---
 OUT_DIR=/zmk-out
 
-rm -rf "$OUT_DIR/*.uf2"
+rm "$OUT_DIR"/*.uf2
