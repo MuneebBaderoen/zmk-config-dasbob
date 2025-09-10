@@ -79,9 +79,9 @@
 
         Nav {
             bindings = <
-&trans     &swapwindow  &swapapp   &trans     &trans  /**/  &trans  &trans          &trans          &trans        &trans
-&trans     &kp LG(A)    &kp LG(S)  &kp LG(C)  &trans  /**/  &trans  &kp LEFT        &kp DOWN        &kp UP        &kp RIGHT
-&kp LG(W)  &kp LG(Z)    &kp LG(X)  &kp LG(V)  &trans  /**/  &trans  &trans          &trans          &trans        &trans
+&trans     &swapwindow  &swapapp   &trans     &trans  /**/  &trans  &trans          &trans        &trans      &trans
+&trans     &kp LG(A)    &kp LG(S)  &kp LG(C)  &trans  /**/  &trans  &kp LEFT        &kp DOWN      &kp UP      &kp RIGHT 
+&kp LG(W)  &kp LG(Z)    &kp LG(X)  &kp LG(V)  &trans  /**/  &trans  &kp BACKSPACE   &kp ENTER     &kp ESCAPE  &trans
                         &trans     &trans     &trans  /**/  &trans  &trans          &trans
             >;
         };
@@ -108,7 +108,7 @@
             bindings = <
 &trans         &trans         &trans         &trans                 &trans  /**/  &trans  &trans         &trans         &trans         &trans
 &kp LG(LC(J))  &kp LG(LC(L))  &kp LG(LC(O))  &kp LG(LC(SEMICOLON))  &trans  /**/  &trans  &trans         &trans         &trans         &trans
-&trans         &trans         &trans         &trans                 &trans  /**/  &trans  &kp LG(LC(J))  &kp LG(LC(O))  &kp LG(LC(L))  &kp LG(LC(L))
+&trans         &trans         &trans         &trans                 &trans  /**/  &trans  &trans         &trans         &trans         &trans
                               &trans         &trans                 &trans  /**/  &trans  &trans         &trans
             >;
         };

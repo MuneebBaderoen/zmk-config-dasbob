@@ -30,14 +30,6 @@ config ZMK_USB_ENABLED
     bool
     default y if SHIELD_DASBOB_DONGLE
 
-config ZMK_LOG_ENABLED
-    bool
-    default y if SHIELD_DASBOB_DONGLE
-
-config ZMK_LOGGING
-    bool
-    default y if SHIELD_DASBOB_DONGLE
-
 config USB_DEVICE_PRODUCT
     string
     default "Dasbob Dongle" if SHIELD_DASBOB_DONGLE
@@ -45,14 +37,6 @@ config USB_DEVICE_PRODUCT
 config ZMK_BLE_ENABLED
 	bool
 	default y
-
-config ZMK_USB_LOGGING
-    bool
-    default y if SHIELD_DASBOB_DONGLE
-
-config USB_CDC_ACM
-	bool
-	default y if SHIELD_DASBOB_DONGLE
 
 # Enable deep sleep, but only after long inactivity
 config ZMK_SLEEP

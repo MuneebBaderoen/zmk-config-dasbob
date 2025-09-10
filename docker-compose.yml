@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  zmk-build:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - zmk-workspace:/zmk-workspace # named volume for persistence
+      - ./zmk-out:/zmk-out
+      - ./zmk-bin:/zmk-bin
+      - ./zmk-config:/zmk-config
+      - ./build.yaml:/zmk-build.yaml
+    environment:
+      - CMAKE_PREFIX_PATH=/zmk-workspace
+    working_dir: /zmk-workspace
+    tty: true
+    entrypoint: /bin/bash
+    # command: ["/zmk-bin/build.sh"] 
+
+volumes:
+  zmk-workspace:   # named anonymous volume
