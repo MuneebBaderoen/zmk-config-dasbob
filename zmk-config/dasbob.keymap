@@ -2,15 +2,25 @@
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/pointing.h>
 
+&sk {
+    release-after-ms = <1500>;
+    quick-release;
+};
+
+&caps_word {
+    continue-list = <UNDERSCORE MINUS>;
+    mods = <(MOD_LSFT)>;
+};
+
+&key_repeat {
+    usage-pages = <HID_USAGE_KEY HID_USAGE_CONSUMER>;
+};
+
 / {
     behaviors {
-
-
         hm: homerow_mods {
             compatible = "zmk,behavior-hold-tap";
-            label = "HOMEROW_MODS";
             bindings = <&kp>, <&kp>;
-
             #binding-cells = <2>;
             tapping-term-ms = <200>;
             quick-tap-ms = <0>;
@@ -19,7 +29,6 @@
 
         swapapp: swapapp {
             compatible = "zmk,behavior-tri-state";
-            label = "SWAPPER";
             #binding-cells = <0>;
             bindings = <&kt LGUI>, <&kp TAB>, <&kt LGUI>;
             ignored-key-positions = <0 2 16 17 18 19>;
@@ -27,7 +36,6 @@
 
         swapwindow: swapwindow {
             compatible = "zmk,behavior-tri-state";
-            label = "SWAPPER_WINDOW";
             #binding-cells = <0>;
             bindings = <&kt LGUI>, <&kp GRAVE>, <&kt LGUI>;
             ignored-key-positions = <1>;
@@ -41,6 +49,12 @@
             timeout-ms = <50>;  // max delay between keys
             key-positions = <4 5>; 
             bindings = <&bootloader>;
+        };
+
+        capsword_combo {
+            timeout-ms = <50>;  // max delay between keys
+            key-positions = <14 15>; 
+            bindings = <&caps_word>;
         };
 
         // enter_combo {
@@ -70,46 +84,46 @@
 
         Base {
             bindings = <
-&kp Q  &kp Y             &kp O        &kp U        &kp MINUS      /**/  &kp J          &kp G        &kp N  &kp F    &kp K
-&kp H  &kp I             &kp E        &kp A        &kp DOT        /**/  &kp P          &kp D        &kp R  &kp S    &kp L
-&kp X  &kp SINGLE_QUOTE  &kp SLASH    &kp COMMA    &kp SEMICOLON  /**/  &kp B          &kp C        &kp M  &kp W    &kp V
-                         &sl 2        &lt 1 T      &kp TAB        /**/  &kp BACKSPACE  &lt 4 SPACE  &sl 3
+&kp Q  &kp Y             &kp O        &kp U        &kp MINUS      /**/  &kp J     &kp G      &kp N  &kp F    &kp K
+&kp H  &kp I             &kp E        &kp A        &kp DOT        /**/  &kp P     &kp D      &kp R  &kp S    &kp L
+&kp X  &kp SINGLE_QUOTE  &kp SLASH    &kp COMMA    &kp SEMICOLON  /**/  &kp B     &kp C      &kp M  &kp W    &kp V
+                         &sl 2        &lt 1 T      &key_repeat    /**/  &kp BSPC  &kp SPACE  &sl 3
             >;
         };
 
         Nav {
             bindings = <
-&trans     &swapwindow  &swapapp   &trans     &trans  /**/  &trans  &trans          &trans        &trans      &trans
-&trans     &kp LG(A)    &kp LG(S)  &kp LG(C)  &trans  /**/  &trans  &kp LEFT        &kp DOWN      &kp UP      &kp RIGHT 
-&kp LG(W)  &kp LG(Z)    &kp LG(X)  &kp LG(V)  &trans  /**/  &trans  &kp BACKSPACE   &kp ENTER     &kp ESCAPE  &trans
-                        &trans     &trans     &trans  /**/  &trans  &trans          &trans
+&trans     &swapwindow  &swapapp   &trans     &trans  /**/  &trans  &kp LC(I)  &kp LC(RBRC)  &kp LS(LC(RBRC))  &kp LC(O)
+&trans     &kp LG(A)    &kp LG(S)  &kp LG(C)  &trans  /**/  &trans  &kp LEFT   &kp DOWN      &kp UP            &kp RIGHT 
+&kp LG(W)  &kp LG(Z)    &kp LG(X)  &kp LG(V)  &trans  /**/  &trans  &kp BSPC   &kp ENTER     &kp ESC           &trans
+                        &trans     &trans     &trans  /**/  &trans  &trans     &trans
             >;
         };
 
         Num {
             bindings = <
-&kp TAB   &trans     &trans    &trans     &trans  /**/  &trans  &kp N7  &kp N8  &kp N9  &kp BACKSPACE
-&sk LALT  &sk LCTRL  &sk LGUI  &sk LSHFT  &trans  /**/  &kp Z   &kp N4  &kp N5  &kp N6  &kp ENTER
-&trans    &trans     &trans    &sk LALT   &trans  /**/  &kp N0  &kp N1  &kp N2  &kp N3  &kp ESCAPE
-                     &trans    &trans     &trans  /**/  &trans  &trans  &trans
+&trans    &trans     &trans    &trans     &trans  /**/  &kp N5        &kp N6    &kp N7     &kp N8   &kp N9 
+&sk LALT  &sk LCTRL  &sk LGUI  &sk LSHFT  &trans  /**/  &kp N0        &kp N1    &kp N2     &kp N3   &kp N4  
+&trans    &trans     &trans    &kp TAB    &trans  /**/  &kp LA(BSPC)  &kp BSPC  &kp ENTER  &kp ESC  &kp Z
+                     &trans    &trans     &trans  /**/  &trans        &trans    &trans
             >;
         };
 
         Sym {
             bindings = <
-&kp TAB  &trans  &trans  &trans  &trans  /**/  &trans  &trans      &trans    &trans     &trans
-&trans   &trans  &trans  &trans  &trans  /**/  &trans  &sk LSHFT   &sk LGUI  &sk LCTRL  &kp ENTER
-&trans   &trans  &trans  &trans  &trans  /**/  &trans  &kp ESCAPE  &trans    &trans     &kp ESCAPE
-                 &trans  &trans  &trans  /**/  &trans  &trans      &trans
+&trans  &trans    &trans     &kp PLUS  &kp LS(MINUS)  /**/  &trans  &trans     &trans    &trans     &trans
+&kp LT  &kp EXCL  &kp EQUAL  &kp GT    &trans         /**/  &trans  &sk LSHFT  &sk LGUI  &sk LCTRL  &sk LALT
+&trans  &kp LBKT  &kp LPAR   &kp LBRC  &trans         /**/  &trans  &kp RBRC   &kp RPAR  &kp RBKT   &trans     
+                  &trans     &trans    &trans         /**/  &trans  &trans     &trans
             >;
         };
 
         Win {
             bindings = <
-&trans         &trans         &trans         &trans                 &trans  /**/  &trans  &trans         &trans         &trans         &trans
-&kp LG(LC(J))  &kp LG(LC(L))  &kp LG(LC(O))  &kp LG(LC(SEMICOLON))  &trans  /**/  &trans  &trans         &trans         &trans         &trans
-&trans         &trans         &trans         &trans                 &trans  /**/  &trans  &trans         &trans         &trans         &trans
-                              &trans         &trans                 &trans  /**/  &trans  &trans         &trans
+&trans         &trans         &trans         &trans            &bootloader  /**/  &bootloader  &trans         &trans         &trans         &trans
+&kp LG(LC(J))  &kp LG(LC(L))  &kp LG(LC(O))  &kp LG(LC(SEMI))  &trans       /**/  &trans       &trans         &trans         &trans         &trans
+&trans         &trans         &trans         &trans            &trans       /**/  &trans       &trans         &trans         &trans         &trans
+                              &trans         &trans            &trans       /**/  &trans       &trans         &trans
             >;
         };
     };
