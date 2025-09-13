@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -euo pipefail
+set -exuo pipefail
 
 # Default values from environment variables if set
 BOARD="${DEFAULT_BOARD:-}"

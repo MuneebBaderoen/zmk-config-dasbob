@@ -41,11 +41,11 @@ config ZMK_BLE_ENABLED
 # Enable deep sleep, but only after long inactivity
 config ZMK_SLEEP
     bool
-    default y if SHIELD_DASBOB_LEFT_PERIPHERAL || SHIELD_DASBOB_RIGHT_PERIPHERAL
+    default n if SHIELD_DASBOB_LEFT_PERIPHERAL || SHIELD_DASBOB_RIGHT_PERIPHERAL
 
 config ZMK_DEEP_SLEEP
     bool
-    default y if SHIELD_DASBOB_LEFT_PERIPHERAL || SHIELD_DASBOB_RIGHT_PERIPHERAL
+    default n if SHIELD_DASBOB_LEFT_PERIPHERAL || SHIELD_DASBOB_RIGHT_PERIPHERAL
 
 # Timeout before going to suspend (light sleep)
 config ZMK_IDLE_SLEEP_TIMEOUT

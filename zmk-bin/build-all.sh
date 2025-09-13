@@ -23,7 +23,7 @@ for t in "${TARGETS[@]}"; do
     IFS=$'\t' read -r BOARD SHIELD SNIPPET <<< "$t"
     echo "Building board=$BOARD shield=$SHIELD snippet=$SNIPPET"
 
-    CMD=("$BUILD_SCRIPT" --board "$BOARD" --shield "$SHIELD")
+    CMD=("$BUILD_SCRIPT" --pristine --board "$BOARD" --shield "$SHIELD")
     [[ -n "$SNIPPET" ]] && CMD+=(--snippet "$SNIPPET")
 
     echo "Running: ${CMD[*]}"

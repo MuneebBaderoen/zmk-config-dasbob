@@ -5,4 +5,4 @@ set -euo pipefail
 # --- User parameters ---
 OUT_DIR=/zmk-out
 
-rm "$OUT_DIR"/*.uf2
+find $OUT_DIR -name "*.uf2" -type f -delete
