@@ -3,7 +3,7 @@
 #include <dt-bindings/zmk/pointing.h>
 
 &sk {
-    release-after-ms = <1500>;
+    release-after-ms = <1000>;
     quick-release;
 };
 
@@ -108,10 +108,10 @@
 
         Num {
             bindings = <
-&trans    &trans     &trans    &trans     &trans  /**/  &kp N5        &kp N6    &kp N7     &kp N8   &kp N9 
-&sk LALT  &sk LCTRL  &sk LGUI  &sk LSHFT  &trans  /**/  &kp N0        &kp N1    &kp N2     &kp N3   &kp N4  
-&trans    &trans     &trans    &kp TAB    &trans  /**/  &kp LA(BSPC)  &kp BSPC  &kp ENTER  &kp ESC  &kp Z
-                     &trans    &trans     &trans  /**/  &trans        &trans    &trans
+&trans    &trans     &trans    &trans     &trans  /**/  &trans  &kp N7   &kp N8    &kp N9  &kp BSPC 
+&sk LALT  &sk LCTRL  &sk LGUI  &sk LSHFT  &trans  /**/  &kp Z   &kp N4   &kp N5    &kp N6  &kp ENTER  
+&trans    &trans     &trans    &kp TAB    &trans  /**/  &kp N0  &kp N1   &kp N2    &kp N3  &kp ESC
+                     &trans    &trans     &trans  /**/  &trans  &kp ESC  &kp BSPC
             >;
         };
 
@@ -120,7 +120,7 @@
 &trans  &trans    &trans     &kp PLUS   &kp LS(MINUS)  /**/  &trans  &trans     &trans    &trans     &trans
 &kp LT  &kp EXCL  &kp EQUAL  &kp GT     &trans         /**/  &trans  &sk LSHFT  &sk LGUI  &sk LCTRL  &sk LALT
 &trans  &kp LBKT  &kp LPAR   &kp LBRC   &trans         /**/  &trans  &kp RBRC   &kp RPAR  &kp RBKT   &trans     
-                  &trans     &lt 1 ESC  &trans         /**/  &trans  &trans     &trans
+                  &kp TAB    &lt 1 ESC  &trans         /**/  &trans  &trans     &trans
             >;
         };
 
