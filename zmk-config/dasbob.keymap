@@ -40,6 +40,12 @@
             bindings = <&kt LGUI>, <&kp GRAVE>, <&kt LGUI>;
             ignored-key-positions = <1>;
         };
+
+        magic_key: magic_key {
+            compatible = "zmk,behavior-magic-key";
+            #binding-cells = <0>;
+            label = "MAGIC_KEY";
+        };
     };
 
     combos {
@@ -84,19 +90,19 @@
 
         Base {
             bindings = <
-&kp Q  &kp Y             &kp O        &kp U        &kp MINUS      /**/  &kp J     &kp G      &kp N  &kp F    &kp K
-&kp H  &kp I             &kp E        &kp A        &kp DOT        /**/  &kp P     &kp D      &kp R  &kp S    &kp L
-&kp X  &kp SINGLE_QUOTE  &kp SLASH    &kp COMMA    &kp SEMICOLON  /**/  &kp B     &kp C      &kp M  &kp W    &kp V
-                         &sl 2        &lt 1 T      &key_repeat    /**/  &kp BSPC  &kp SPACE  &sl 3
+&kp Q  &kp Y             &kp O        &kp U        &kp MINUS      /**/  &kp J       &kp G      &kp N  &kp F    &kp K
+&kp H  &kp I             &kp E        &kp A        &kp DOT        /**/  &kp P       &kp D      &kp R  &kp S    &kp L
+&kp X  &kp SINGLE_QUOTE  &kp SLASH    &kp COMMA    &kp SEMICOLON  /**/  &kp B       &kp C      &kp M  &kp W    &kp V
+                         &sl 2        &lt 1 T      &magic_key     /**/  &lt 4 BSPC  &kp SPACE  &sl 3
             >;
         };
 
         Nav {
             bindings = <
-&trans     &swapwindow  &swapapp   &trans     &trans  /**/  &trans  &kp LC(I)  &kp LC(RBRC)  &kp LS(LC(RBRC))  &kp LC(O)
-&trans     &kp LG(A)    &kp LG(S)  &kp LG(C)  &trans  /**/  &trans  &kp LEFT   &kp DOWN      &kp UP            &kp RIGHT 
-&kp LG(W)  &kp LG(Z)    &kp LG(X)  &kp LG(V)  &trans  /**/  &trans  &kp BSPC   &kp ENTER     &kp ESC           &trans
-                        &trans     &trans     &trans  /**/  &trans  &trans     &trans
+&trans     &swapwindow  &swapapp   &trans     &trans  /**/  &trans        &kp LC(O)  &kp LC(RBKT)  &kp LS(LC(RBKT))  &kp LC(I)
+&trans     &kp LG(A)    &kp LG(S)  &kp LG(C)  &trans  /**/  &trans        &kp LEFT   &kp DOWN      &kp UP            &kp RIGHT 
+&kp LG(W)  &kp LG(Z)    &kp LG(X)  &kp LG(V)  &trans  /**/  &kp LA(BSPC)  &kp BSPC   &kp ENTER     &kp ESC           &trans
+                        &trans     &trans     &trans  /**/  &trans        &trans     &trans
             >;
         };
 
@@ -111,14 +117,23 @@
 
         Sym {
             bindings = <
-&trans  &trans    &trans     &kp PLUS  &kp LS(MINUS)  /**/  &trans  &trans     &trans    &trans     &trans
-&kp LT  &kp EXCL  &kp EQUAL  &kp GT    &trans         /**/  &trans  &sk LSHFT  &sk LGUI  &sk LCTRL  &sk LALT
-&trans  &kp LBKT  &kp LPAR   &kp LBRC  &trans         /**/  &trans  &kp RBRC   &kp RPAR  &kp RBKT   &trans     
-                  &trans     &trans    &trans         /**/  &trans  &trans     &trans
+&trans  &trans    &trans     &kp PLUS   &kp LS(MINUS)  /**/  &trans  &trans     &trans    &trans     &trans
+&kp LT  &kp EXCL  &kp EQUAL  &kp GT     &trans         /**/  &trans  &sk LSHFT  &sk LGUI  &sk LCTRL  &sk LALT
+&trans  &kp LBKT  &kp LPAR   &kp LBRC   &trans         /**/  &trans  &kp RBRC   &kp RPAR  &kp RBKT   &trans     
+                  &trans     &lt 1 ESC  &trans         /**/  &trans  &trans     &trans
             >;
         };
 
         Win {
+            bindings = <
+&trans         &trans         &trans         &trans            &bootloader  /**/  &bootloader  &trans         &trans         &trans         &trans
+&kp LG(LC(J))  &kp LG(LC(L))  &kp LG(LC(O))  &kp LG(LC(SEMI))  &trans       /**/  &trans       &trans         &trans         &trans         &trans
+&trans         &trans         &trans         &trans            &trans       /**/  &trans       &trans         &trans         &trans         &trans
+                              &trans         &trans            &trans       /**/  &trans       &trans         &trans
+            >;
+        };
+
+        Media {
             bindings = <
 &trans         &trans         &trans         &trans            &bootloader  /**/  &bootloader  &trans         &trans         &trans         &trans
 &kp LG(LC(J))  &kp LG(LC(L))  &kp LG(LC(O))  &kp LG(LC(SEMI))  &trans       /**/  &trans       &trans         &trans         &trans         &trans
