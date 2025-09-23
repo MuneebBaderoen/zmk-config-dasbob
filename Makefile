@@ -1,13 +1,14 @@
-init:
-	docker-compose run --rm zmk-build /zmk-bin/init.sh
-
-update:
-	docker-compose run --rm zmk-build /zmk-bin/update.sh
 
 sync:
 	docker-compose run --rm zmk-build /zmk-bin/sync.sh
 
-clean:
+init: sync
+	docker-compose run --rm zmk-build /zmk-bin/init.sh
+
+update: sync
+	docker-compose run --rm zmk-build /zmk-bin/update.sh
+
+clean: sync
 	docker-compose run --rm zmk-build /zmk-bin/clean.sh
 
 build-all: clean
