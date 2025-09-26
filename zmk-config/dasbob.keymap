@@ -2,7 +2,7 @@
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/pointing.h>
 
-#define AS(keycode) &as LS(keycode) keycode     // Autoshift Macro
+#define AS(keycode) &as LS(keycode) keycode     // Autoshift Preprocessor Macro
 
 &sk {
     release-after-ms = <1000>;
@@ -113,10 +113,10 @@
 
         Base { // 0
             bindings = <
-&kp Q  &kp Y             &kp O        &kp U        &kp MINUS      /**/  &kp J   &kp G      &kp N  &kp F    &kp K
-&kp H  &kp I             &kp E        &lt 2 A      &kp DOT        /**/  &kp P   &kp D      &kp R  &kp S    &kp L
-&kp X  &kp SINGLE_QUOTE  &kp SLASH    &kp COMMA    &kp SEMICOLON  /**/  &kp B   &kp C      &kp M  &kp W    &kp V
-                         &sl 6        &lt 1 T      &sl 4          /**/  &sl 4   &kp SPACE  &sl 3
+&kp Q  &kp Y             &kp O        &kp U        &kp UNDER  /**/  &kp J   &kp G      &kp N  &kp F    &kp K
+&kp H  &kp I             &kp E        &lt 2 A      &kp DOT    /**/  &kp P   &kp D      &kp R  &kp S    &kp L
+&kp X  &kp SINGLE_QUOTE  &kp SLASH    &kp COMMA    &kp SEMI   /**/  &kp B   &kp C      &kp M  &kp W    &kp V
+                         &sl 6        &lt 1 T      &sl 4      /**/  &sl 4   &kp SPACE  &sl 3
             >;
         };
 
@@ -131,19 +131,19 @@
 
         Num { // 2
             bindings = <
-&trans    &trans     &trans    &trans     &trans  /**/  &trans  AS(N7)  AS(N8)  AS(N9)  &trans
-&sk LALT  &sk LCTRL  &sk LGUI  &sk LSHFT  &trans  /**/  &trans  AS(N4)  AS(N5)  AS(N6)  &trans
-&trans    &trans     &trans    &kp TAB    &trans  /**/  &kp N0  AS(N1)  AS(N2)  AS(N3)  &trans
-                     &trans    &trans     &trans  /**/  &trans  &trans  &kp BSPC
+&trans    &trans     &trans       &trans     &trans  /**/  &kp MINUS AS(N7)  AS(N8)  AS(N9)  &kp SLASH
+&sk LALT  &sk LCTRL  &sk LGUI     &sk LSHFT  &trans  /**/  &kp PLUS  AS(N4)  AS(N5)  AS(N6)  &kp ASTERISK
+&trans    &trans     &kp LS(TAB)  &kp TAB    &trans  /**/  &kp N0    AS(N1)  AS(N2)  AS(N3)  &kp COMMA
+                     &trans       &trans     &trans  /**/  &trans    &trans  &trans
             >;
         };
 
         Sym { // 3
             bindings = <
-&kp GRAVE  &kp BSLH  &trans     &kp PLUS   &kp LS(MINUS)  /**/  &trans  &trans     &trans    &trans     &trans
-&kp LT     &kp EXCL  &kp EQUAL  &kp GT     &trans         /**/  &trans  &sk LSHFT  &sk LGUI  &sk LCTRL  &sk LALT
-&trans     &kp LBKT  &kp LPAR   &kp LBRC   &trans         /**/  &trans  &kp RBRC   &kp RPAR  &kp RBKT   &trans     
-                     &kp TAB    &lt 1 ESC  &trans         /**/  &trans  &trans     &trans
+&kp GRAVE  &kp BSLH  &kp AMPS   &kp PIPE   &kp MINUS     /**/  &trans  &trans     &trans    &trans     &trans
+&kp LT     &kp EXCL  &kp EQUAL  &kp GT     &kp PLUS      /**/  &trans  &sk LSHFT  &sk LGUI  &sk LCTRL  &sk LALT
+&trans     &kp LBKT  &kp LPAR   &kp LBRC   &kp LS(SEMI)  /**/  &trans  &kp RBRC   &kp RPAR  &kp RBKT   &trans     
+                     &sl 7      &trans     &trans        /**/  &trans  &trans     &trans
             >;
         };
 
@@ -156,25 +156,34 @@
             >;
         };
 
-        Media { // 5
+        MediaOld { // 5
             bindings = <
-&trans         &trans         &trans         &trans            &bootloader  /**/  &bootloader  &trans         &trans         &trans         &trans
-&kp LG(LC(J))  &kp LG(LC(L))  &kp LG(LC(O))  &kp LG(LC(SEMI))  &trans       /**/  &trans       &trans         &trans         &trans         &trans
-&trans         &trans         &trans         &trans            &trans       /**/  &trans       &trans         &trans         &trans         &trans
-                              &trans         &trans            &trans       /**/  &trans       &trans         &trans
+&trans  &trans        &trans            &trans        &bootloader  /**/  &bootloader  &trans  &trans  &trans  &trans
+&trans  &kp K_PREV    &kp K_PLAY_PAUSE  &kp K_NEXT    &trans       /**/  &trans       &trans  &trans  &trans  &trans
+&trans  &kp K_VOL_DN  &kp K_MUTE        &kp K_VOL_UP  &trans       /**/  &trans       &trans  &trans  &trans  &trans
+                      &trans            &trans        &trans       /**/  &trans       &trans  &trans
             >;
         };
 
         Control { // 6
             bindings = <
-&trans    &trans     &trans    &trans     &trans  /**/  &trans        &kp LC(O)  &kp LC(RBKT)  &kp LS(LC(RBKT))  &kp LC(I)
-&sk LALT  &sk LCTRL  &sk LGUI  &sk LSHFT  &trans  /**/  &kp Z         &kp LEFT   &kp DOWN      &kp UP            &kp RIGHT 
-&trans    &trans     &trans    &kp TAB    &trans  /**/  &kp LA(BSPC)  &kp BSPC   &kp ENTER     &kp ESC           &kp ESC
-                     &trans    &trans     &trans  /**/  &trans        &trans     &trans
+&trans    &trans     &trans       &trans     &trans  /**/  &trans        &kp LC(O)  &kp LC(RBKT)  &kp LS(LC(RBKT))  &kp LC(I)
+&sk LALT  &sk LCTRL  &sk LGUI     &sk LSHFT  &trans  /**/  &kp Z         &kp LEFT   &kp DOWN      &kp UP            &kp RIGHT 
+&trans    &trans     &kp LS(TAB)  &kp TAB    &trans  /**/  &kp LA(BSPC)  &kp BSPC   &kp ENTER     &kp ESC           &kp ESC
+                     &trans       &trans     &trans  /**/  &trans        &trans     &sl 7
             >;
         };
 
-        Empty { // 7
+        Media { // 7
+            bindings = <
+&trans  &trans        &trans            &trans        &bootloader  /**/  &bootloader  &trans  &trans  &trans  &trans
+&trans  &kp K_PREV    &kp K_PLAY_PAUSE  &kp K_NEXT    &trans       /**/  &trans       &trans  &trans  &trans  &trans
+&trans  &kp K_VOL_DN  &kp K_MUTE        &kp K_VOL_UP  &trans       /**/  &trans       &trans  &trans  &trans  &trans
+                      &sl 7             &trans        &trans       /**/  &trans       &trans  &sl 7
+            >;
+        };
+
+        Empty { // 8
             bindings = <
 &trans  &trans  &trans  &trans  &trans  /**/  &trans  &trans  &trans  &trans  &trans
 &trans  &trans  &trans  &trans  &trans  /**/  &trans  &trans  &trans  &trans  &trans
