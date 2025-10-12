@@ -114,7 +114,7 @@
 
         Base { // 0
             bindings = <
-&kp Q  &kp Y             &kp O        &kp U        &kp UNDER  /**/  &kp J   &kp G      &kp N  &kp F    &kp K
+&kp Q  &kp Y             &kp O        &kp U        &kp MINUS  /**/  &kp J   &kp G      &kp N  &kp F    &kp K
 &kp H  &kp I             &kp E        &lt 2 A      &kp DOT    /**/  &kp P   &kp D      &kp R  &kp S    &kp L
 &kp X  &kp SINGLE_QUOTE  &kp SLASH    &kp COMMA    &kp SEMI   /**/  &kp B   &kp C      &kp M  &kp W    &kp V
                          &sl 5        &lt 1 T      &sl 4      /**/  &sl 4   &kp SPACE  &sl 3
@@ -141,7 +141,7 @@
 
         Sym { // 3
             bindings = <
-&kp GRAVE  &kp BSLH  &kp AMPS   &kp PIPE   &kp MINUS     /**/  &trans  &trans     &trans    &trans     &trans
+&kp GRAVE  &kp BSLH  &kp AMPS   &kp PIPE   &kp UNDER     /**/  &trans  &trans     &trans    &trans     &trans
 &kp LT     &kp EXCL  &kp EQUAL  &kp GT     &kp PLUS      /**/  &trans  &sk LSHFT  &sk LGUI  &sk LCTRL  &sk LALT
 &trans     &kp LBKT  &kp LPAR   &kp LBRC   &kp LS(SEMI)  /**/  &trans  &kp RBRC   &kp RPAR  &kp RBKT   &trans     
                      &sl 6      &trans     &trans        /**/  &trans  &trans     &trans
