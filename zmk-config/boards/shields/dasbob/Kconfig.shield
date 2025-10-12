@@ -1,17 +1,17 @@
 # Copyright (c) 2021 The ZMK Contributors
 # SPDX-License-Identifier: MIT
 
-config SHIELD_DASBOB_LEFT
-	def_bool $(shields_list_contains,dasbob_left)
+config SHIELD_DASBOB_MAIN_LEFT
+	def_bool $(shields_list_contains,dasbob_main_left)
 
-config SHIELD_DASBOB_RIGHT
-	def_bool $(shields_list_contains,dasbob_right)
+config SHIELD_DASBOB_MAIN_RIGHT
+	def_bool $(shields_list_contains,dasbob_main_right)
 
 config SHIELD_DASBOB_DONGLE
 	def_bool $(shields_list_contains,dasbob_dongle)
 
-config SHIELD_DASBOB_LEFT_PERIPHERAL
-	def_bool $(shields_list_contains,dasbob_left_peripheral)
+config SHIELD_DASBOB_DONGLE_LEFT
+	def_bool $(shields_list_contains,dasbob_dongle_left)
 	
-config SHIELD_DASBOB_RIGHT_PERIPHERAL
-	def_bool $(shields_list_contains,dasbob_right_peripheral)
+config SHIELD_DASBOB_DONGLE_RIGHT
+	def_bool $(shields_list_contains,dasbob_dongle_right)
