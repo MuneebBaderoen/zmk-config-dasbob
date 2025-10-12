@@ -14,22 +14,22 @@
 ---
 include:
   # Main builds
-  # - board: nice_nano_v2
-  #   shield: dasbob_left
+  - board: nice_nano_v2
+    shield: dasbob_main_left
 
-  # - board: nice_nano_v2
-  #   shield: dasbob_right
+  - board: nice_nano_v2
+    shield: dasbob_main_right
 
   # Dongle builds
   - board: nice_nano_v2
-    shield: dasbob_dongle
+    shield: dasbob_dongle_central
     # snippet: zmk-usb-logging
 
   - board: nice_nano_v2
-    shield: dasbob_left_peripheral
+    shield: dasbob_dongle_left
 
   - board: nice_nano_v2
-    shield: dasbob_right_peripheral
+    shield: dasbob_dongle_right
 
   # Settings reset
   - board: nice_nano_v2
