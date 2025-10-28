@@ -75,6 +75,18 @@
     combos {
         compatible = "zmk,combos";
 
+        alt_one_combo {
+            timeout-ms = <50>;  // max delay between keys
+            key-positions = <32 33>; 
+            bindings = <&tog 1>;
+        };
+        
+        alt_two_combo {
+            timeout-ms = <50>;  // max delay between keys
+            key-positions = <32 34>; 
+            bindings = <&tog 2>;
+        };
+
         bootloader_combo {
             timeout-ms = <50>;  // max delay between keys
             key-positions = <4 5>; 
@@ -86,12 +98,6 @@
             key-positions = <14 15>; 
             bindings = <&caps_word>;
         };
-
-        // enter_combo {
-        //     timeout-ms = <50>;  // max delay between keys
-        //     key-positions = <27 28>; 
-        //     bindings = <&kp ENTER>;
-        // };
 
         // backspace_combo {
         //     timeout-ms = <50>;  // max delay between keys
@@ -114,14 +120,32 @@
 
         Base { // 0
             bindings = <
-&kp Q  &kp Y             &kp O        &kp U        &kp MINUS  /**/  &kp J   &kp G      &kp N  &kp F    &kp K
-&kp H  &kp I             &kp E        &lt 2 A      &kp DOT    /**/  &kp P   &kp D      &kp R  &kp S    &kp L
-&kp X  &kp SINGLE_QUOTE  &kp SLASH    &kp COMMA    &kp SEMI   /**/  &kp B   &kp C      &kp M  &kp W    &kp V
-                         &sl 5        &lt 1 T      &sl 4      /**/  &sl 4   &kp SPACE  &sl 3
+&kp Q    &kp Y             &kp O        &kp U        &kp MINUS  /**/  &kp J   &kp G      &kp N  &kp F    &kp K
+&kp H    &kp I             &kp E        &lt 4 A      &kp DOT    /**/  &kp P   &kp D      &kp R  &kp S    &kp L
+&kp X    &kp SINGLE_QUOTE  &kp SLASH    &kp COMMA    &kp SEMI   /**/  &kp B   &kp C      &kp M  &kp W    &kp V
+                           &sl 7        &lt 3 T      &sl 6      /**/  &sl 6   &kp SPACE  &sl 5
             >;
         };
 
-        Nav { // 1
+        AltOne { // 1
+            bindings = <
+&kp W              &kp Y      &kp U        &kp O        &kp SEMI   /**/  &kp Q   &kp L  &kp D  &kp P    &kp F
+&kp C              &kp I      &kp E        &lt 4 A      &kp COMMA  /**/  &kp K   &kp H  &kp T  &kp N    &kp S
+&kp SINGLE_QUOTE   &kp MINUS  &kp EQUAL    &kp DOT      &kp SLASH  /**/  &kp J   &kp M  &kp G  &kp B    &kp V
+                              &sl 7        &lt 3 SPACE  &sl 6      /**/  &sl 6   &kp R  &sl 5
+            >;
+        };
+
+        AltTwo { // 2
+            bindings = <
+&kp Q    &kp W             &kp E        &kp R         &kp T   /**/  &kp Y   &kp U      &kp I      &kp O    &kp P
+&kp A    &kp S             &kp D        &lt 4 F       &kp G   /**/  &kp H   &kp J      &kp K      &kp L    &kp SEMI
+&kp Z    &kp X             &kp C        &kp V         &kp B   /**/  &kp N   &kp M      &kp COMMA  &kp DOT  &kp SLASH
+                           &sl 7        &lt 3 SPACE   &sl 6   /**/  &sl 6   &kp SPACE  &sl 5
+            >;
+        };
+
+        Shortcut { // 3
             bindings = <
 &trans     &swapwin   &swapapp   &trans     &trans  /**/  &trans        &kp LC(O)  &kp LC(RBKT)  &kp LS(LC(RBKT))  &kp LC(I)
 &trans     &kp LG(A)  &kp LG(S)  &kp LG(C)  &trans  /**/  &trans        &kp LEFT   &kp DOWN      &kp UP            &kp RIGHT 
@@ -130,25 +154,25 @@
             >;
         };
 
-        Num { // 2
+        Num { // 4
             bindings = <
-&trans    &trans     &trans       &trans     &trans  /**/  &kp MINUS AS(N7)  AS(N8)  AS(N9)  &kp SLASH
-&sk LALT  &sk LCTRL  &sk LGUI     &sk LSHFT  &trans  /**/  &kp PLUS  AS(N4)  AS(N5)  AS(N6)  &kp ASTERISK
+&trans    &trans     &trans       &trans     &trans  /**/  &kp MINUS AS(N7)  AS(N8)  AS(N9)  &kp X 
+&sk LALT  &sk LCTRL  &sk LGUI     &sk LSHFT  &trans  /**/  &kp Z     AS(N4)  AS(N5)  AS(N6)  &kp ASTERISK
 &trans    &trans     &kp LS(TAB)  &kp TAB    &trans  /**/  &kp N0    AS(N1)  AS(N2)  AS(N3)  &kp COMMA
                      &trans       &trans     &trans  /**/  &trans    &trans  &trans
             >;
         };
 
-        Sym { // 3
+        Sym { // 5
             bindings = <
 &kp GRAVE  &kp BSLH  &kp AMPS   &kp PIPE   &kp UNDER     /**/  &trans  &trans     &trans    &trans     &trans
 &kp LT     &kp EXCL  &kp EQUAL  &kp GT     &kp PLUS      /**/  &trans  &sk LSHFT  &sk LGUI  &sk LCTRL  &sk LALT
 &trans     &kp LBKT  &kp LPAR   &kp LBRC   &kp LS(SEMI)  /**/  &trans  &kp RBRC   &kp RPAR  &kp RBKT   &trans     
-                     &sl 6      &trans     &trans        /**/  &trans  &trans     &trans
+                     &sl 8      &trans     &trans        /**/  &trans  &trans     &trans
             >;
         };
 
-        Win { // 4
+        Win { // 6
             bindings = <
 &trans         &trans         &trans         &trans            &bootloader  /**/  &bootloader  &trans  &trans  &trans  &trans
 &kp LG(LC(J))  &kp LG(LC(L))  &kp LG(LC(O))  &kp LG(LC(SEMI))  &trans       /**/  &trans       &trans  &trans  &trans  &trans
@@ -157,25 +181,25 @@
             >;
         };
 
-        Control { // 5
+        Control { // 7
             bindings = <
-&trans    &trans     &trans       &trans     &trans  /**/  &trans        &kp LC(O)  &kp LC(RBKT)  &kp LS(LC(RBKT))  &kp LC(I)
+&kp Z     &trans     &trans       &trans     &trans  /**/  &trans        &kp LC(O)  &kp LC(RBKT)  &kp LS(LC(RBKT))  &kp X
 &sk LALT  &sk LCTRL  &sk LGUI     &sk LSHFT  &trans  /**/  &kp Z         &kp LEFT   &kp DOWN      &kp UP            &kp RIGHT 
 &trans    &trans     &kp LS(TAB)  &kp TAB    &trans  /**/  &kp LA(BSPC)  &kp BSPC   &kp ENTER     &kp ESC           &kp ESC
-                     &trans       &trans     &trans  /**/  &trans        &trans     &sl 6
+                     &trans       &trans     &trans  /**/  &trans        &trans     &sl 8
             >;
         };
 
-        Media { // 6
+        Media { // 8
             bindings = <
 &trans  &trans        &trans            &trans        &bootloader  /**/  &bootloader  &bt BT_CLR  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2
 &trans  &kp K_PREV    &kp K_PLAY_PAUSE  &kp K_NEXT    &trans       /**/  &trans       &trans      &trans        &trans        &trans
 &trans  &kp K_VOL_DN  &kp K_MUTE        &kp K_VOL_UP  &trans       /**/  &trans       &trans      &trans        &trans        &trans
-                      &sl 6             &trans        &trans       /**/  &trans       &trans      &sl 6
+                      &sl 8             &trans        &trans       /**/  &trans       &trans      &sl 8
             >;
         };
 
-        Empty { // 7
+        Empty { // 9
             bindings = <
 &trans  &trans  &trans  &trans  &trans  /**/  &trans  &trans  &trans  &trans  &trans
 &trans  &trans  &trans  &trans  &trans  /**/  &trans  &trans  &trans  &trans  &trans

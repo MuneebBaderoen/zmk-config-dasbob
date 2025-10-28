@@ -7,8 +7,8 @@ config SHIELD_DASBOB_MAIN_LEFT
 config SHIELD_DASBOB_MAIN_RIGHT
 	def_bool $(shields_list_contains,dasbob_main_right)
 
-config SHIELD_DASBOB_DONGLE
-	def_bool $(shields_list_contains,dasbob_dongle)
+config SHIELD_DASBOB_DONGLE_CENTRAL
+	def_bool $(shields_list_contains,dasbob_dongle_central)
 
 config SHIELD_DASBOB_DONGLE_LEFT
 	def_bool $(shields_list_contains,dasbob_dongle_left)
