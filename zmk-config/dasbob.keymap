@@ -131,10 +131,10 @@
 
         Base { // 0
             bindings = <
-&kp Q        &kp Y      &kp O      &kp U        &kp MINUS   /**/  &kp J        &kp G      &kp N    &kp F    &kp K
-&kp H        &kp I      &lt 4 E    &lt 4 A      &kp DOT     /**/  &kp P        &kp D      &kp R    &kp S    &kp L
-&mt LSHFT X  &kp QUOTE  &kp SLASH  &kp COMMA    &kp SEMI    /**/  &kp B        &lt 6 C    &kp M    &kp W    &mt LSHFT V
-                        &sl 7      &lt 3 T      &lt 6 TAB   /**/  &lt 6 ENTER  &kp SPACE  &sl 5
+&kp Q        &kp Y      &kp O      &kp U        &kp MINUS   /**/  &kp J  &kp G      &kp N    &kp F    &kp K
+&kp H        &kp I      &lt 4 E    &lt 4 A      &kp DOT     /**/  &kp P  &kp D      &kp R    &kp S    &kp L
+&mt LSHFT X  &kp QUOTE  &kp SLASH  &kp COMMA    &kp SEMI    /**/  &kp B  &lt 6 C    &kp M    &kp W    &mt LSHFT V
+                        &sl 7      &lt 3 T      &sl 6       /**/  &sl 6  &kp SPACE  &sl 5
             >;
         };
 
@@ -176,19 +176,19 @@
 
         Sym { // 5
             bindings = <
-&kp GRAVE  &kp BSLH  &kp SLASH  &kp PIPE  &kp UNDER     /**/  &trans  &trans     &trans    &trans     &trans
-&kp LT     &kp EXCL  &go_eq     &kp GT    &kp PLUS      /**/  &trans  &sk LSHFT  &sk LGUI  &sk LCTRL  &sk LALT
-&trans     &kp LBKT  &kp LPAR   &kp LBRC  &kp LS(SEMI)  /**/  &trans  &kp RBRC   &kp RPAR  &kp RBKT   &trans     
-                     &sl 8      &trans    &trans        /**/  &trans  &trans     &trans
+&kp GRAVE  &kp BSLH  &kp AMPS  &kp PIPE  &kp UNDER     /**/  &trans  &trans     &trans    &trans     &trans
+&kp LT     &kp EXCL  &go_eq    &kp GT    &kp PLUS      /**/  &trans  &sk LSHFT  &sk LGUI  &sk LCTRL  &sk LALT
+&trans     &kp LBKT  &kp LPAR  &kp LBRC  &kp LS(SEMI)  /**/  &trans  &kp RBRC   &kp RPAR  &kp RBKT   &trans     
+                     &sl 8     &trans    &trans        /**/  &trans  &trans     &trans
             >;
         };
 
         Win { // 6
             bindings = <
-&none          &kp LG(LC(I))  &kp LG(LC(O))  &none          &bootloader  /**/  &bootloader  &kp K_BACK  &kp LC(LS(TAB))  &kp LC(LS(TAB))  &kp K_FORWARD
-&kp LG(LC(H))  &kp LG(LC(J))  &kp LG(LC(K))  &kp LG(LC(L))  &none        /**/  &none        &kp LC(H)   &kp LC(J)        &kp LC(K)        &kp LC(L)
-&none          &none          &none          &none          &none        /**/  &none        &none       &none            &none            &none
-                              &none          &none          &none        /**/  &none        &none       &none
+&none          &kp LG(LC(I))  &kp LG(LC(O))  &none          &bootloader  /**/  &bootloader  &kp LC(LEFT)  &kp LC(LS(TAB))  &kp LC(TAB)  &kp LC(RIGHT)
+&kp LG(LC(H))  &kp LG(LC(J))  &kp LG(LC(K))  &kp LG(LC(L))  &none        /**/  &none        &kp LC(H)     &kp LC(J)        &kp LC(K)    &kp LC(L)
+&none          &none          &none          &none          &sl 10       /**/  &none        &kp LS(F11)   &kp F10          &kp F8       &kp F11
+                              &trans         &none          &none        /**/  &none        &none         &none
             >;
         };
 
@@ -219,7 +219,16 @@
             >;
         };
 
-        Empty { // 10
+        Function { // 10
+            bindings = <
+&trans  &trans    &trans   &trans  &trans  /**/  &trans  &kp F7  &kp F8  &kp F9  &kp F10
+&trans  &trans    &trans   &trans  &trans  /**/  &trans  &kp F4  &kp F5  &kp F6  &kp F11
+&trans  &trans    &trans   &trans  &trans  /**/  &trans  &kp F1  &kp F2  &kp F3  &kp F12
+                  &trans   &trans  &trans  /**/  &trans  &trans  &trans 
+            >;
+        };
+
+        Empty { // 11
             bindings = <
 &trans  &trans  &trans  &trans  &trans  /**/  &trans  &trans  &trans  &trans  &trans
 &trans  &trans  &trans  &trans  &trans  /**/  &trans  &trans  &trans  &trans  &trans
