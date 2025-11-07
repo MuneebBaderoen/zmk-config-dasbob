@@ -131,19 +131,19 @@
 
         Base { // 0
             bindings = <
-&kp Q        &kp Y      &kp O      &kp U        &kp MINUS   /**/  &kp J  &kp G      &kp N    &kp F    &kp K
-&kp H        &kp I      &lt 4 E    &lt 4 A      &kp DOT     /**/  &kp P  &kp D      &kp R    &kp S    &kp L
-&mt LSHFT X  &kp QUOTE  &kp SLASH  &kp COMMA    &kp SEMI    /**/  &kp B  &lt 6 C    &kp M    &kp W    &mt LSHFT V
-                        &sl 7      &lt 3 T      &sl 6       /**/  &sl 6  &kp SPACE  &sl 5
+&kp Q  &kp Y      &kp O      &kp U        &kp MINUS   /**/  &kp J  &kp G      &kp N    &kp F    &kp K
+&kp H  &kp I      &lt 4 E    &lt 4 A      &kp DOT     /**/  &kp P  &kp D      &kp R    &kp S    &kp L
+&kp X  &kp QUOTE  &kp SLASH  &kp COMMA    &kp SEMI    /**/  &kp B  &lt 6 C    &kp M    &kp W    &kp V
+                  &sl 7      &lt 3 T      &sl 6       /**/  &sl 6  &kp SPACE  &sl 5
             >;
         };
 
         AltOne { // 1
             bindings = <
-&kp Q        &kp Y      &kp O      &kp U        &kp MINUS   /**/  &kp F   &kp L  &kp D    &kp P    &kp X
-&kp C        &kp I      &lt 4 A    &lt 4 E      &kp SEMI    /**/  &kp K   &kp H  &lt 6 T  &kp N    &kp S
-&mt LSHFT W  &kp QUOTE  &kp COMMA  &kp DOT      &kp SLASH   /**/  &kp J   &kp M  &kp G    &kp B    &mt LSHFT V
-                        &trans     &lt 3 SPACE  &trans      /**/  &trans  &kp R  &trans
+&kp Q  &kp Y      &kp O      &kp U        &kp MINUS   /**/  &kp F   &kp L  &kp D    &kp P    &kp X
+&kp C  &kp I      &lt 4 A    &lt 4 E      &kp SEMI    /**/  &kp K   &kp H  &lt 6 T  &kp N    &kp S
+&kp W  &kp QUOTE  &kp COMMA  &kp DOT      &kp SLASH   /**/  &kp J   &kp M  &kp G    &kp B    &kp V
+                  &trans     &lt 3 SPACE  &trans      /**/  &trans  &kp R  &trans
             >;
         };
 
@@ -185,7 +185,7 @@
 
         Win { // 6
             bindings = <
-&none          &kp LG(LC(I))  &kp LG(LC(O))  &none          &bootloader  /**/  &bootloader  &kp LC(LEFT)  &kp LC(LS(TAB))  &kp LC(TAB)  &kp LC(RIGHT)
+&none          &kp LG(LC(I))  &kp LG(LC(O))  &none          &bootloader  /**/  &bootloader  &kp LC(LEFT)  &kp LC(LS(TAB))  &kp LC(TAB)  &kp C_AC_FORWARD
 &kp LG(LC(H))  &kp LG(LC(J))  &kp LG(LC(K))  &kp LG(LC(L))  &none        /**/  &none        &kp LC(H)     &kp LC(J)        &kp LC(K)    &kp LC(L)
 &none          &none          &none          &none          &sl 10       /**/  &none        &kp LS(F11)   &kp F10          &kp F8       &kp F11
                               &trans         &none          &none        /**/  &none        &none         &none
