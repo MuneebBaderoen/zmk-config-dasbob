@@ -140,9 +140,9 @@
 
         AltOne { // 1
             bindings = <
-&kp Q  &kp Y      &kp O      &kp U        &kp MINUS   /**/  &kp F   &kp L  &kp D    &kp P    &kp X
-&kp C  &kp I      &lt 4 A    &lt 4 E      &kp SEMI    /**/  &kp K   &kp H  &lt 6 T  &kp N    &kp S
-&kp W  &kp QUOTE  &kp COMMA  &kp DOT      &kp SLASH   /**/  &kp J   &kp M  &kp G    &kp B    &kp V
+&kp Q  &kp Y      &kp O      &kp U        &kp MINUS   /**/  &kp X   &kp L  &kp D  &kp W    &kp F
+&kp C  &kp I      &lt 4 A    &lt 4 E      &kp SEMI    /**/  &kp K   &kp H  &kp T  &kp N    &kp S
+&kp B  &kp QUOTE  &kp COMMA  &kp DOT      &kp SLASH   /**/  &kp J   &kp M  &kp G  &kp P    &kp V
                   &trans     &lt 3 SPACE  &trans      /**/  &trans  &kp R  &trans
             >;
         };
