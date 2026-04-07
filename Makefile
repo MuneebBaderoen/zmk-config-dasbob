@@ -14,17 +14,19 @@ clean: sync
 build-all: clean
 	docker-compose run --rm zmk-build /zmk-bin/build-all.sh 
 
-build-main: clean
+build-main: 
 	docker-compose run --rm zmk-build /zmk-bin/build.sh --board nice_nano_v2 --shield dasbob_main_left --pristine
 	docker-compose run --rm zmk-build /zmk-bin/build.sh --board nice_nano_v2 --shield dasbob_main_right --pristine
+	docker-compose run --rm zmk-build /zmk-bin/build.sh --board nice_nano_v2 --shield settings_reset --pristine
 
 build-dongle: clean
 	docker-compose run --rm zmk-build /zmk-bin/build.sh --board nice_nano_v2 --shield dasbob_dongle_central --pristine
 	docker-compose run --rm zmk-build /zmk-bin/build.sh --board nice_nano_v2 --shield dasbob_dongle_left --pristine
 	docker-compose run --rm zmk-build /zmk-bin/build.sh --board nice_nano_v2 --shield dasbob_dongle_right --pristine
+	docker-compose run --rm zmk-build /zmk-bin/build.sh --board nice_nano_v2 --shield settings_reset --pristine
 
 build: clean
-	docker-compose run --rm zmk-build /zmk-bin/build.sh --board nice_nano_v2 --shield dasbob_dongle_central --pristine
+	docker-compose run --rm zmk-build /zmk-bin/build.sh --board nice_nano_v2 --shield dasbob_main_left --pristine
 
 flash-main-left:
 	./zmk-bin/flash.sh --uf2 ./zmk-out/dasbob_main_left_nice_nano_v2.uf2
@@ -40,3 +42,6 @@ flash-dongle-left:
 
 flash-dongle-right:
 	./zmk-bin/flash.sh --uf2 ./zmk-out/dasbob_dongle_right_nice_nano_v2.uf2
+
+flash-settings-reset:
+	./zmk-bin/flash.sh --uf2 ./zmk-out/settings_reset_nice_nano_v2.uf2
