@@ -16,6 +16,7 @@
 #include <zmk/endpoints.h>
 #include <zmk/event_manager.h>
 #include <zmk/events/keycode_state_changed.h>
+#include <zmk/events/position_state_changed.h>
 #include <zmk/hid.h>
 #include <zmk/keymap.h>
 
@@ -31,6 +32,8 @@ struct behavior_sticky_mod_layer_config {
     uint32_t release_after_ms;
     bool quick_release;
     bool ignore_modifiers;
+    const uint32_t *ignored_key_positions;
+    size_t ignored_key_positions_len;
     struct zmk_behavior_binding behavior;
 };
 
@@ -45,6 +48,7 @@ struct active_sticky_mod_layer {
     bool timer_started;
     uint8_t modified_key_usage_page;
     uint32_t modified_key_keycode;
+    int64_t last_ignored_position_timestamp;
 };
 
 struct continuation_layer_state {
@@ -59,9 +63,27 @@ static struct continuation_layer_state continuation_layers[ZMK_KEYMAP_LAYERS_LEN
 
 static bool valid_layer(uint8_t layer) { return layer < ZMK_KEYMAP_LAYERS_LEN; }
 
+static bool position_is_ignored(const struct active_sticky_mod_layer *sticky, uint32_t position) {
+    for (size_t i = 0; i < sticky->config->ignored_key_positions_len; i++) {
+        if (sticky->config->ignored_key_positions[i] == position) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
 static bool is_waiting_sticky(const struct active_sticky_mod_layer *sticky) {
     return sticky->position != SML_POSITION_FREE && sticky->timer_started &&
            sticky->modified_key_usage_page == 0 && sticky->modified_key_keycode == 0;
+}
+
+static bool is_active_sticky(const struct active_sticky_mod_layer *sticky) {
+    return sticky->position != SML_POSITION_FREE;
+}
+
+static bool has_modified_key(const struct active_sticky_mod_layer *sticky) {
+    return sticky->modified_key_usage_page != 0 || sticky->modified_key_keycode != 0;
 }
 
 static struct active_sticky_mod_layer *
@@ -99,6 +121,7 @@ store_sticky_mod_layer(struct zmk_behavior_binding_event *event, uint32_t param1
         sticky->timer_started = false;
         sticky->modified_key_usage_page = 0;
         sticky->modified_key_keycode = 0;
+        sticky->last_ignored_position_timestamp = 0;
         return sticky;
     }
 
@@ -222,6 +245,22 @@ static void release_waiting_stickies_for_layer(uint8_t layer, int64_t timestamp)
     }
 }
 
+static void release_all_stickies_for_layer(uint8_t layer, int64_t timestamp) {
+    for (int i = 0; i < SML_MAX_HELD; i++) {
+        struct active_sticky_mod_layer *sticky = &active_sticky_mod_layers[i];
+        if (sticky->continuation_layer != layer || !is_active_sticky(sticky)) {
+            continue;
+        }
+
+        release_sticky_behavior(sticky, timestamp);
+    }
+}
+
+static void consume_continuation_layer(uint8_t layer, int64_t timestamp) {
+    release_all_stickies_for_layer(layer, timestamp);
+    deactivate_continuation_layer(layer);
+}
+
 static int on_sticky_mod_layer_binding_pressed(struct zmk_behavior_binding *binding,
                                                struct zmk_behavior_binding_event event) {
     const struct device *dev = zmk_behavior_get_binding(binding->behavior_dev);
@@ -261,7 +300,6 @@ static int on_sticky_mod_layer_binding_released(struct zmk_behavior_binding *bin
         find_sticky_mod_layer(event.position, cfg->behavior, binding->param1, continuation_layer);
 
     if (sticky == NULL) {
-        LOG_ERR("Active sticky mod layer cleared too early");
         return ZMK_BEHAVIOR_OPAQUE;
     }
 
@@ -283,10 +321,12 @@ static const struct behavior_driver_api behavior_sticky_mod_layer_driver_api = {
 };
 
 static int sticky_mod_layer_keycode_state_changed_listener(const zmk_event_t *eh);
+static int sticky_mod_layer_position_state_changed_listener(const zmk_event_t *eh);
 static void continuation_layer_timer_handler(struct k_work *work);
 
 ZMK_LISTENER(behavior_sticky_mod_layer, sticky_mod_layer_keycode_state_changed_listener);
 ZMK_SUBSCRIPTION(behavior_sticky_mod_layer, zmk_keycode_state_changed);
+ZMK_SUBSCRIPTION(behavior_sticky_mod_layer, zmk_position_state_changed);
 
 static int sticky_mod_layer_keycode_state_changed_listener(const zmk_event_t *eh) {
     struct zmk_keycode_state_changed *ev = as_zmk_keycode_state_changed(eh);
@@ -294,13 +334,13 @@ static int sticky_mod_layer_keycode_state_changed_listener(const zmk_event_t *eh
         return ZMK_EV_EVENT_BUBBLE;
     }
 
-    struct active_sticky_mod_layer *stickies_to_release[SML_MAX_HELD] = {0};
+    bool layers_to_consume[ZMK_KEYMAP_LAYERS_LEN] = {0};
     bool layers_to_deactivate[ZMK_KEYMAP_LAYERS_LEN] = {0};
     const struct zmk_keycode_state_changed ev_copy = *ev;
 
     for (int i = 0; i < SML_MAX_HELD; i++) {
         struct active_sticky_mod_layer *sticky = &active_sticky_mod_layers[i];
-        if (sticky->position == SML_POSITION_FREE) {
+        if (!is_active_sticky(sticky)) {
             continue;
         }
 
@@ -316,7 +356,11 @@ static int sticky_mod_layer_keycode_state_changed_listener(const zmk_event_t *eh
                 continue;
             }
 
-            if (sticky->modified_key_usage_page != 0 || sticky->modified_key_keycode != 0) {
+            if (sticky->last_ignored_position_timestamp == ev_copy.timestamp) {
+                continue;
+            }
+
+            if (has_modified_key(sticky)) {
                 continue;
             }
 
@@ -334,42 +378,55 @@ static int sticky_mod_layer_keycode_state_changed_listener(const zmk_event_t *eh
             sticky->modified_key_keycode = ev_copy.keycode;
             layers_to_deactivate[sticky->continuation_layer] = true;
 
-            if (sticky->timer_started && sticky->config->quick_release) {
-                stickies_to_release[i] = sticky;
+            if (!sticky->timer_started || sticky->config->quick_release) {
+                layers_to_consume[sticky->continuation_layer] = true;
             }
         } else if (sticky->timer_started &&
                    sticky->modified_key_usage_page == ev_copy.usage_page &&
                    sticky->modified_key_keycode == ev_copy.keycode) {
-            stickies_to_release[i] = sticky;
-        }
-    }
-
-    for (int layer = 0; layer < ZMK_KEYMAP_LAYERS_LEN; layer++) {
-        if (layers_to_deactivate[layer]) {
-            deactivate_continuation_layer(layer);
+            layers_to_consume[sticky->continuation_layer] = true;
         }
     }
 
     bool event_reraised = false;
-    for (int i = 0; i < SML_MAX_HELD; i++) {
-        struct active_sticky_mod_layer *sticky = stickies_to_release[i];
-        if (!sticky) {
-            continue;
-        }
+    for (int layer = 0; layer < ZMK_KEYMAP_LAYERS_LEN; layer++) {
+        if (layers_to_consume[layer]) {
+            if (!event_reraised) {
+                struct zmk_keycode_state_changed_event dupe_ev =
+                    copy_raised_zmk_keycode_state_changed(ev);
+                ZMK_EVENT_RAISE_AFTER(dupe_ev, behavior_sticky_mod_layer);
+                event_reraised = true;
+            }
 
-        if (!event_reraised) {
-            struct zmk_keycode_state_changed_event dupe_ev =
-                copy_raised_zmk_keycode_state_changed(ev);
-            ZMK_EVENT_RAISE_AFTER(dupe_ev, behavior_sticky_mod_layer);
-            event_reraised = true;
+            consume_continuation_layer(layer, ev_copy.timestamp);
+        } else if (layers_to_deactivate[layer]) {
+            deactivate_continuation_layer(layer);
         }
-
-        uint8_t layer = sticky->continuation_layer;
-        release_sticky_behavior(sticky, ev_copy.timestamp);
-        refresh_continuation_layer(layer);
     }
 
     return event_reraised ? ZMK_EV_EVENT_CAPTURED : ZMK_EV_EVENT_BUBBLE;
+}
+
+static int sticky_mod_layer_position_state_changed_listener(const zmk_event_t *eh) {
+    struct zmk_position_state_changed *ev = as_zmk_position_state_changed(eh);
+    if (ev == NULL) {
+        return ZMK_EV_EVENT_BUBBLE;
+    }
+
+    for (int i = 0; i < SML_MAX_HELD; i++) {
+        struct active_sticky_mod_layer *sticky = &active_sticky_mod_layers[i];
+        if (sticky->position == SML_POSITION_FREE) {
+            continue;
+        }
+
+        if (!position_is_ignored(sticky, ev->position)) {
+            continue;
+        }
+
+        sticky->last_ignored_position_timestamp = ev->timestamp;
+    }
+
+    return ZMK_EV_EVENT_BUBBLE;
 }
 
 static void continuation_layer_timer_handler(struct k_work *work) {
@@ -411,11 +468,20 @@ static int behavior_sticky_mod_layer_init(const struct device *dev) {
 }
 
 #define SML_INST(n)                                                                                \
+    IF_ENABLED(DT_INST_NODE_HAS_PROP(n, ignored_key_positions),                                   \
+               (static const uint32_t ignored_key_positions_##n[] =                               \
+                    DT_INST_PROP(n, ignored_key_positions);))                                      \
     static const struct behavior_sticky_mod_layer_config behavior_sticky_mod_layer_config_##n = {  \
         .behavior = ZMK_KEYMAP_EXTRACT_BINDING(0, DT_DRV_INST(n)),                                 \
         .release_after_ms = DT_INST_PROP(n, release_after_ms),                                     \
         .quick_release = DT_INST_PROP(n, quick_release),                                           \
         .ignore_modifiers = DT_INST_PROP(n, ignore_modifiers),                                     \
+        .ignored_key_positions =                                                                   \
+            COND_CODE_1(DT_INST_NODE_HAS_PROP(n, ignored_key_positions),                           \
+                        (ignored_key_positions_##n), (NULL)),                                      \
+        .ignored_key_positions_len =                                                               \
+            COND_CODE_1(DT_INST_NODE_HAS_PROP(n, ignored_key_positions),                           \
+                        (ARRAY_SIZE(ignored_key_positions_##n)), (0)),                             \
     };                                                                                             \
     BEHAVIOR_DT_INST_DEFINE(n, behavior_sticky_mod_layer_init, NULL, NULL,                         \
                             &behavior_sticky_mod_layer_config_##n, POST_KERNEL,                    \

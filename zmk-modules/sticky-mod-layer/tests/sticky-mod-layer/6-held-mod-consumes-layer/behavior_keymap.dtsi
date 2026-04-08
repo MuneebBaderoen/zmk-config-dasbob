@@ -10,7 +10,6 @@
             release-after-ms = <250>;
             quick-release;
             ignore-modifiers;
-            ignored-key-positions = <0>;
             bindings = <&kp>;
         };
     };
@@ -20,28 +19,14 @@
 
         default_layer {
             bindings = <
-                &mo 1         &kp A
+                &sml LCTRL 1  &kp A
                 &kp C         &kp D
             >;
         };
 
-        source_layer {
+        continuation_layer {
             bindings = <
-                &trans        &sml LCTRL 2
-                &sml RALT 3   &trans
-            >;
-        };
-
-        lmod_layer {
-            bindings = <
-                &trans        &trans
-                &trans        &sml LSHFT 2
-            >;
-        };
-
-        rmod_layer {
-            bindings = <
-                &sml RCTRL 3  &trans
+                &sml LSHFT 1  &trans
                 &trans        &trans
             >;
         };

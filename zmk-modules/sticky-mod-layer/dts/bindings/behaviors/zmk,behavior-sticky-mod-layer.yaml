@@ -17,3 +17,5 @@ properties:
     type: boolean
   ignore-modifiers:
     type: boolean
+  ignored-key-positions:
+    type: array

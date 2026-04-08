@@ -22,7 +22,7 @@ config ZMK_SPLIT_ROLE_PERIPHERAL
 
 # Dongle-specific
 config ZMK_SPLIT_BLE_CENTRAL_PERIPHERALS
-	int	
+	int
 	default 2 if SHIELD_DASBOB_DONGLE_CENTRAL
 
 config ZMK_USB_ENABLED

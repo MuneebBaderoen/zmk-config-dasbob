@@ -20,29 +20,29 @@
 
         default_layer {
             bindings = <
-                &mo 1         &kp A
-                &kp C         &kp D
+                &mo 1     &kp A
+                &kp B     &kp C
             >;
         };
 
         source_layer {
             bindings = <
                 &trans        &sml LCTRL 2
-                &sml RALT 3   &trans
+                &trans        &trans
             >;
         };
 
-        lmod_layer {
+        continuation_layer {
             bindings = <
+                &mo 3         &trans
                 &trans        &trans
-                &trans        &sml LSHFT 2
             >;
         };
 
-        rmod_layer {
+        bridge_layer {
             bindings = <
-                &sml RCTRL 3  &trans
-                &trans        &trans
+                &trans     &trans
+                &trans     &kp D
             >;
         };
     };
