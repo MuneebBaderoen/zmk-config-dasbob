@@ -78,17 +78,30 @@
             flavor = "tap-preferred";
         };
 
+        kt_on: key_toggle_on {
+            compatible = "zmk,behavior-key-toggle";
+            #binding-cells = <1>;
+            toggle-mode = "on";
+        };
+
+        kt_off: key_toggle_off {
+            compatible = "zmk,behavior-key-toggle";
+            #binding-cells = <1>;
+            toggle-mode = "off";
+        };
+
         swapapp: swapapp {
             compatible = "zmk,behavior-tri-state";
             #binding-cells = <0>;
-            bindings = <&kt LGUI>, <&kp TAB>, <&kt LGUI>;
+            // Use explicit on/off semantics so sticky GUI state cannot invert the swapper.
+            bindings = <&kt_on LGUI>, <&kp TAB>, <&kt_off LGUI>;
             ignored-key-positions = <0 2 16 17 18 19>;
         };
 
         swapwin: swapwin {
             compatible = "zmk,behavior-tri-state";
             #binding-cells = <0>;
-            bindings = <&kt LGUI>, <&kp GRAVE>, <&kt LGUI>;
+            bindings = <&kt_on LGUI>, <&kp GRAVE>, <&kt_off LGUI>;
             ignored-key-positions = <1>;
         };
 
@@ -163,18 +176,18 @@
 
         Base { // 0
             bindings = <
-&kp Q       &kp Y      &kp O        &kp U        &kp Z      /**/  &kp X   &kp L      &kp D      &kp P      &kp W
+&kp Q       &kp Y      &kp O        &kp U        &kp MINUS  /**/  &kp X   &kp L      &kp D      &kp P      &kp W
 LALT_T(C)   LCTL_T(I)  LCMD_T(A)    LSFT_T(E)    &kp DOT    /**/  &kp K   RSFT_T(H)  RCMD_T(T)  RCTL_T(N)  RALT_T(S)
-&kp B       &kp QUOTE  &lt 4 SLASH  &lt 4 COMMA  &kp MINUS  /**/  &kp J   &kp M      &kp G      &kp F      &kp V
+&kp B       &kp QUOTE  &lt 4 SLASH  &lt 4 COMMA  &kp Z      /**/  &kp J   &kp M      &kp G      &kp F      &kp V
                        &sl 7        &lt 3 SPACE  &sl 6      /**/  &sl 6   &kp R      &sl 5
             >;
         };
 
         AltOne { // 1
             bindings = <
-&kp Q      &kp Y      &kp O        &kp U        &kp Z       /**/  &kp J  &kp G      &kp N      &kp F      &kp K
+&kp Q      &kp Y      &kp O        &kp U        &kp MINUS   /**/  &kp J  &kp G      &kp N      &kp F      &kp K
 LALT_T(H)  LCTL_T(I)  LCMD_T(E)    LSFT_T(A)    &kp DOT     /**/  &kp P  RSFT_T(D)  RCMD_T(R)  RCTL_T(S)  RALT_T(L)
-&kp X      &kp QUOTE  &lt 4 SLASH  &lt 4 COMMA  &kp MINUS   /**/  &kp B  &lt 6 C    &kp M      &kp W      &kp V
+&kp X      &kp QUOTE  &lt 4 SLASH  &lt 4 COMMA  &kp Z       /**/  &kp B  &lt 6 C    &kp M      &kp W      &kp V
                       &sl 7        &lt 3 T      &sl 6       /**/  &sl 6  &kp SPACE  &sl 5
             >;
         };
@@ -208,10 +221,10 @@ LALT_T(H)  LCTL_T(I)  LCMD_T(E)    LSFT_T(A)    &kp DOT     /**/  &kp P  RSFT_T(
 
         Sym { // 5
             bindings = <
-&kp Q   &kp PIPE  &kp GRAVE &kp BSLH  &kp UNDER     /**/  &trans  &trans     &trans    &trans     &trans
-&kp LT  &kp EXCL  &go_eq    &kp GT    &kp PLUS      /**/  &trans  &sk LSHFT  &sk LGUI  &sk LCTRL  &sk LALT
-&trans  &kp LBKT  &kp LPAR  &kp LBRC  &kp LS(SEMI)  /**/  &trans  &kp RBRC   &kp RPAR  &kp RBKT   &trans     
-                  &sl 8     &trans    &trans        /**/  &trans  &trans     &trans
+&kp Q     &kp PIPE  &kp GRAVE &kp BSLH  &kp UNDER     /**/  &trans  &trans     &trans    &trans     &trans
+&kp LT    &kp EXCL  &go_eq    &kp GT    &kp PLUS      /**/  &trans  &sk LSHFT  &sk LGUI  &sk LCTRL  &sk LALT
+&kp SEMI  &kp LBKT  &kp LPAR  &kp LBRC  &kp LS(SEMI)  /**/  &trans  &kp RBRC   &kp RPAR  &kp RBKT   &trans     
+                    &sl 8     &trans    &trans        /**/  &trans  &trans     &trans
             >;
         };
 

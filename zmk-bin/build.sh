@@ -64,6 +64,17 @@ WEST_FLAGS="-s zmk/app -b $BOARD"
 # Additional CMake flags
 CMAKE_FLAGS="-DZMK_CONFIG=$CONFIG_DIR -DSHIELD=$SHIELD"
 [[ -n $SNIPPET ]] && CMAKE_FLAGS="$CMAKE_FLAGS -DSNIPPET=$SNIPPET"
+MODULES=""
+for module in /repo/zmk-modules/*; do
+  if [[ -f "$module/zephyr/module.yml" ]]; then
+    if [[ -n "$MODULES" ]]; then
+      MODULES="$MODULES;$module"
+    else
+      MODULES="$module"
+    fi
+  fi
+done
+[[ -n $MODULES ]] && CMAKE_FLAGS="$CMAKE_FLAGS -DZMK_EXTRA_MODULES=$MODULES"
 
 # Run the build
 west build $WEST_FLAGS -d "$BUILD_DIR" -- $CMAKE_FLAGS

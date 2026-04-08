@@ -28,6 +28,9 @@ build-dongle: clean
 build: clean
 	docker-compose run --rm zmk-build /zmk-bin/build.sh --board nice_nano_v2 --shield dasbob_main_left --pristine
 
+test-sticky-mod-layer:
+	docker-compose run --rm zmk-build /zmk-bin/test-module.sh /repo/zmk-modules/sticky-mod-layer/tests/sticky-mod-layer
+
 flash-main-left:
 	./zmk-bin/flash.sh --uf2 ./zmk-out/dasbob_main_left_nice_nano_v2.uf2
 
