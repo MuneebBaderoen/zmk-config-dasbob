@@ -5,6 +5,8 @@ set -euo pipefail
 BUILD_SCRIPT="/zmk-bin/build.sh"
 TARGETS_FILE="/zmk-build.yaml"
 
+
+
 # Use Python to read include entries
 mapfile -t TARGETS < <(
     python3 - <<PY
@@ -23,7 +25,7 @@ for t in "${TARGETS[@]}"; do
     IFS=$'\t' read -r BOARD SHIELD SNIPPET <<< "$t"
     echo "Building board=$BOARD shield=$SHIELD snippet=$SNIPPET"
 
-    CMD=("$BUILD_SCRIPT" --board "$BOARD" --shield "$SHIELD")
+    CMD=("$BUILD_SCRIPT" --pristine --board "$BOARD" --shield "$SHIELD")
     [[ -n "$SNIPPET" ]] && CMD+=(--snippet "$SNIPPET")
 
     echo "Running: ${CMD[*]}"

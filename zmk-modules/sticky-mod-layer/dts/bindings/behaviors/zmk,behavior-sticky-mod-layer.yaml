@@ -1,0 +1,21 @@
+# SPDX-License-Identifier: MIT
+
+description: Sticky mod with continuation layer behavior
+
+compatible: "zmk,behavior-sticky-mod-layer"
+
+include: two_param.yaml
+
+properties:
+  bindings:
+    type: phandles
+    required: true
+  release-after-ms:
+    type: int
+    required: true
+  quick-release:
+    type: boolean
+  ignore-modifiers:
+    type: boolean
+  ignored-key-positions:
+    type: array

@@ -1,0 +1,11 @@
+DT_COMPAT_ZMK_BEHAVIOR_STICKY_MOD_LAYER := zmk,behavior-sticky-mod-layer
+
+config ZMK_BEHAVIOR_STICKY_MOD_LAYER
+        bool
+        default $(dt_compat_enabled,$(DT_COMPAT_ZMK_BEHAVIOR_STICKY_MOD_LAYER))
+
+config ZMK_BEHAVIOR_STICKY_MOD_LAYER_MAX_HELD
+        int "Maximum number of simultaneously active sticky mod layer bindings"
+        default 10
+        range 1 32
+        depends on ZMK_BEHAVIOR_STICKY_MOD_LAYER

@@ -1,0 +1,49 @@
+#include <dt-bindings/zmk/keys.h>
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/kscan_mock.h>
+
+/ {
+    behaviors {
+        sml: sticky_mod_layer {
+            compatible = "zmk,behavior-sticky-mod-layer";
+            #binding-cells = <2>;
+            release-after-ms = <250>;
+            quick-release;
+            ignore-modifiers;
+            ignored-key-positions = <0>;
+            bindings = <&kp>;
+        };
+    };
+
+    keymap {
+        compatible = "zmk,keymap";
+
+        default_layer {
+            bindings = <
+                &mo 1     &kp A
+                &kp B     &kp C
+            >;
+        };
+
+        source_layer {
+            bindings = <
+                &trans        &sml LCTRL 2
+                &trans        &trans
+            >;
+        };
+
+        continuation_layer {
+            bindings = <
+                &mo 3         &trans
+                &trans        &trans
+            >;
+        };
+
+        bridge_layer {
+            bindings = <
+                &trans     &trans
+                &trans     &kp D
+            >;
+        };
+    };
+};
