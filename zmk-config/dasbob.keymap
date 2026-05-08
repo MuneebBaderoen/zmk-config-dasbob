@@ -5,9 +5,9 @@
 
 #define AS(keycode)      &as LS(keycode) keycode  // Autoshift preprocessor macro
 
-#define LCMD_T(keycode)  &kp keycode              // Mod-tap preprocessor macro for Command (GUI)
+#define LCMD_T(keycode)  &lt 4 keycode              // Mod-tap preprocessor macro for Command (GUI)
 #define LALT_T(keycode)  &kp keycode              // Hold-tap preprocessor macro for Alt
-#define LSFT_T(keycode)  &kp keycode              // Hold-tap preprocessor macro for Shift
+#define LSFT_T(keycode)  &lt 4 keycode              // Hold-tap preprocessor macro for Shift
 #define LCTL_T(keycode)  &kp keycode              // Hold-tap preprocessor macro for Control
 
 #define RCMD_T(keycode)  &kp keycode              // Hold-tap preprocessor macro for Right Command (Right GUI)
@@ -15,10 +15,17 @@
 #define RSFT_T(keycode)  &kp keycode              // Hold-tap preprocessor macro for Right Shift
 #define RCTL_T(keycode)  &kp keycode              // Hold-tap preprocessor macro for Right Control
 
-#define LMOD(keycode) &sml keycode 11
-#define RMOD(keycode) &sml keycode 12
+// #define LMOD(keycode) &sml keycode 11
+// #define RMOD(keycode) &sml keycode 12
+
+#define LMOD(keycode) &sk keycode
+#define RMOD(keycode) &sk keycode
 
 #define QUOTE SINGLE_QUOTE
+
+&mt {
+    tapping-term-ms = <400>;
+};
 
 &sk {
     release-after-ms = <1000>;
@@ -191,17 +198,17 @@
             bindings = <
                 &kp Q             &kp Y             &kp O             &kp U             &kp MINUS         /**/  &kp J             &kp G             &kp N             &kp F             &kp K
                 LALT_T(H)         LCTL_T(I)         LCMD_T(E)         LSFT_T(A)         &kp DOT           /**/  &kp P             RSFT_T(D)         RCMD_T(R)         RCTL_T(S)         RALT_T(L)
-                &kp X             &kp QUOTE         &lt 4 SLASH       &lt 4 COMMA       &kp Z             /**/  &kp B             &lt 6 C           &kp M             &kp W             &kp V
-                                                    &sl 7             &lt 3 T           &sl 6             /**/  &sl 6             &kp SPACE         &sl 5
+                &kp X             &kp QUOTE         &lt 6 SLASH       &lt 10 COMMA      &kp COLON         /**/  &kp B             &kp C             &lt 6 M           &kp W             &kp V
+                                                    &sl 7             &lt 3 T           &sl 6             /**/  &sl 6             &lt 13 SPACE      &sl 5
             >;
         };
 
         AltOne { // 1
             bindings = <
-                &kp Q             &kp Y             &kp O             &kp U             &kp MINUS       /**/  &kp X             &kp L           &kp D             &kp P             &kp W
+                &kp B             &kp Y             &kp O             &kp U             &kp MINUS       /**/  &kp Q             &kp L           &kp D             &kp P             &kp W
                 LALT_T(C)         LCTL_T(I)         LCMD_T(A)         LSFT_T(E)         &kp DOT         /**/  &kp K             RSFT_T(H)       RCMD_T(T)         RCTL_T(N)         RALT_T(S)
-                &kp B             &kp QUOTE         &lt 4 SLASH       &lt 4 COMMA       &kp Z           /**/  &kp J             &kp M           &kp G             &kp F             &kp V
-                                                    &sl 7             &lt 3 SPACE       &sl 6           /**/  &sl 6             &kp R           &sl 5
+                &kp X             &kp QUOTE         &lt 6 SLASH       &lt 10 COMMA      &kp COLON       /**/  &kp J             &kp M           &lt 6 G           &kp F             &kp V
+                                                    &sl 7             &lt 3 SPACE       &sl 6           /**/  &sl 6             &lt 13 R        &sl 5
             >;
         };
 
@@ -217,7 +224,7 @@
         Shortcut { // 3
             bindings = <
                 &kp LG(Q)         &swapwin          &swapapp          &trans            &trans            /**/  &kp LC(F1)        &kp LC(O)         &kp LC(RBKT)      &kp LS(LC(RBKT))  &kp LC(I)
-                &none             &kp LG(A)         &kp LG(S)         &kp LG(C)         &trans            /**/  &kp LC(F2)        &kp LEFT          &kp DOWN          &kp UP            &kp RIGHT
+                &mt LALT ESC      &mt LCTL LG(A)    &mt LGUI LG(S)    &mt LSHFT LG(C)   &trans            /**/  &kp LC(F2)        &kp LEFT          &kp DOWN          &kp UP            &kp RIGHT
                 &kp LG(W)         &kp LG(Z)         &kp LG(X)         &kp LG(V)         &trans            /**/  &kp LA(BSPC)      &kp BSPC          &kp ENTER         &kp ESC           &kp ESC
                                                     &trans            &trans            &trans            /**/  &trans            &trans            &trans
             >;
@@ -227,7 +234,7 @@
             bindings = <
                 &trans            &trans            &trans            &trans            &trans            /**/  &kp MINUS         &kp N7            &kp N8            &kp N9            &kp SLASH
                 &sk LALT          &sk LCTRL         &sk LSHFT         &sk LSHFT         &trans            /**/  &kp PLUS          &kp N4            &kp N5            &kp N6            &kp ASTERISK
-                &trans            &trans            &sk LSHFT         &sk LSHFT         &trans            /**/  &kp N0            &kp N1            &kp N2            &kp N3            &kp COMMA
+                &trans            &trans            &trans            &trans            &trans            /**/  &kp N0            &kp N1            &kp N2            &kp N3            &kp COMMA
                                                     &trans            &trans            &trans            /**/  &trans            &trans            &trans
             >;
         };
@@ -236,7 +243,7 @@
             bindings = <
                 &kp Q             &kp PIPE          &kp GRAVE         &kp BSLH          &kp UNDER         /**/  &trans            &trans            &trans            &trans            &trans
                 &kp LT            &kp EXCL          &go_eq            &kp GT            &kp PLUS          /**/  &trans            RMOD(RSHFT)       RMOD(RGUI)        RMOD(RCTRL)       RMOD(RALT)
-                &kp SEMI          &kp LBKT          &kp LPAR          &kp LBRC          &kp LS(SEMI)      /**/  &trans            &kp RBRC          &kp RPAR          &kp RBKT          &trans
+                &kp SEMI          &kp LBKT          &kp LPAR          &kp LBRC          &kp SEMI          /**/  &trans            &kp RBRC          &kp RPAR          &kp RBKT          &trans
                                                     &sl 8             &trans            &trans            /**/  &trans            &trans            &trans
             >;
         };
@@ -301,6 +308,15 @@
                 &trans            &trans            &trans            &trans            &trans            /**/  &trans            RMOD(RSHFT)       RMOD(RGUI)        RMOD(RCTRL)       RMOD(RALT)
                 &trans            &trans            &trans            &trans            &trans            /**/  &trans            &trans            &trans            &trans            &trans
                                                     &trans            &trans            &trans            /**/  &trans            &trans            &trans
+            >;
+        };
+
+        Hotkey { // 13
+            bindings = <
+                &kp LG(LC(F1))        &kp LG(LC(F2))        &kp LG(LC(F3))        &kp LG(LC(F4))        &kp LG(LC(F5))        /**/  &trans            &trans            &trans            &trans            &trans
+                &kp LG(LC(F6))        &kp LG(LC(F7))        &kp LG(LC(F8))        &kp LG(LC(F9))        &kp LG(LC(F10))       /**/  &kp LG(LC(F16))   &kp LG(LC(F17))   &kp LG(LC(F18))   &kp LG(LC(F19))   &kp LG(LC(F20))
+                &kp LG(LC(F11))       &kp LG(LC(F12))       &kp LG(LC(F13))       &kp LG(LC(F14))       &kp LG(LC(F15))       /**/  &trans            &trans            &trans            &trans            &trans
+                                                            &trans                &trans                &trans                /**/  &trans            &trans            &trans
             >;
         };
     };
