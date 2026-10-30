@@ -6,6 +6,8 @@ manifest:
       url-base: https://github.com/MuneebBaderoen
     - name: urob
       url-base: https://github.com/urob
+    - name: badjeff
+      url-base: https://github.com/badjeff
   projects:
     - name: zmk
       remote: zmkfirmware
@@ -22,6 +24,10 @@ manifest:
     - name: zmk-magic-key
       remote: MuneebBaderoen
       revision: main
+      clone-depth: 1
+    - name: zmk-output-behavior-listener
+      remote: badjeff
+      revision: 92415c775ecf074c4d4463949c3d85560c54c51d
       clone-depth: 1
   self:
     path: .
