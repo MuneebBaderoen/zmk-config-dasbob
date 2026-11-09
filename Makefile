@@ -48,3 +48,16 @@ flash-dongle-right:
 
 flash-settings-reset:
 	./zmk-bin/flash.sh --uf2 ./zmk-out/settings_reset_nice_nano_v2.uf2
+
+include keymap-drawer/render.mk
+
+KEYMAP_DRAWER = uv tool run --from keymap-drawer==0.23.0 keymap -c keymap-drawer/config.yaml
+VISIBLE_LAYERS = $(filter-out $(HIDE_LAYERS),$(DRAW_LAYERS))
+
+.PHONY: render-keymap
+render-keymap:
+	@test -n "$(strip $(VISIBLE_LAYERS))" || (echo "No visible layers: check DRAW_LAYERS and HIDE_LAYERS in keymap-drawer/render.mk" >&2; exit 1)
+	mkdir -p zmk-out
+	$(KEYMAP_DRAWER) parse -z zmk-config/dasbob.keymap -o zmk-out/dasbob.yaml
+	$(KEYMAP_DRAWER) draw zmk-out/dasbob.yaml --ortho-layout '{split: true, rows: 3, columns: 5, thumbs: 3}' --select-layers $(VISIBLE_LAYERS) -o zmk-out/dasbob.svg.tmp
+	mv zmk-out/dasbob.svg.tmp zmk-out/dasbob.svg

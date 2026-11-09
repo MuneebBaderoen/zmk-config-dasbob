@@ -1,0 +1,501 @@
+{
+  "base": {
+    "layout": "qyou-jgnfkhiea.pdrslx'/,:bcmwvt ",
+    "same_finger_bigrams": 1.0222277397256552,
+    "same_finger_skipgrams": 6.758539625778665,
+    "redirects": 1.3785995214917663,
+    "pinky_load": 11.210588693662174,
+    "right_hand_load": 45.42419513137898,
+    "ice_fingers": [
+      1,
+      6,
+      2
+    ]
+  },
+  "enthium": {
+    "layout": "byou-qldpwciae.khtnsx'/,:jmgfv r",
+    "same_finger_bigrams": 0.629473287993198,
+    "same_finger_skipgrams": 5.495662767414419,
+    "redirects": 1.9051918627543127,
+    "pinky_load": 14.496182879096239,
+    "right_hand_load": 54.68241660070141,
+    "ice_fingers": [
+      1,
+      0,
+      3
+    ]
+  },
+  "enthium_wb": {
+    "layout": "jyou-qldpfciae.khtnsx'/,:bmgwv r",
+    "same_finger_bigrams": 0.9312589115458946,
+    "same_finger_skipgrams": 5.6432634827567325,
+    "redirects": 1.688465774004446,
+    "pinky_load": 13.480438770891505,
+    "right_hand_load": 56.04063242483043,
+    "ice_fingers": [
+      1,
+      0,
+      3
+    ]
+  },
+  "enthium_wb_c_a": {
+    "layout": "jyou-qldpfaice.khtnsx'/,:bmgwv r",
+    "same_finger_bigrams": 1.8125483006511514,
+    "same_finger_skipgrams": 5.327262140946576,
+    "redirects": 1.240276138848197,
+    "pinky_load": 18.47957727777482,
+    "right_hand_load": 56.04063242483043,
+    "ice_fingers": [
+      1,
+      2,
+      3
+    ]
+  },
+  "enthium_wb_c_d": {
+    "layout": "jyou-qlcpfdiae.khtnsx'/,:bmgwv r",
+    "same_finger_bigrams": 1.3160011874189894,
+    "same_finger_skipgrams": 5.151838616135553,
+    "redirects": 1.7778814350208805,
+    "pinky_load": 14.031042390880438,
+    "right_hand_load": 55.4900288048415,
+    "ice_fingers": [
+      1,
+      7,
+      3
+    ]
+  },
+  "enthium_wb_c_f": {
+    "layout": "jyou-qldpcfiae.khtnsx'/,:bmgwv r",
+    "same_finger_bigrams": 1.0555945921273053,
+    "same_finger_skipgrams": 5.936705193851047,
+    "redirects": 1.213240881542024,
+    "pinky_load": 13.480438770891505,
+    "right_hand_load": 57.03054501812043,
+    "ice_fingers": [
+      1,
+      9,
+      3
+    ]
+  },
+  "enthium_wb_c_g": {
+    "layout": "jyou-qldpfgiae.khtnsx'/,:bmcwv r",
+    "same_finger_bigrams": 1.3102480387661202,
+    "same_finger_skipgrams": 5.632392915661688,
+    "redirects": 1.4488282234791083,
+    "pinky_load": 12.401327815518666,
+    "right_hand_load": 57.119743380203275,
+    "ice_fingers": [
+      1,
+      7,
+      3
+    ]
+  },
+  "enthium_wb_c_h": {
+    "layout": "jyou-qldpfhiae.kctnsx'/,:bmgwv r",
+    "same_finger_bigrams": 1.2783292807276063,
+    "same_finger_skipgrams": 6.087627835350593,
+    "redirects": 1.2252439153142443,
+    "pinky_load": 14.998346457181782,
+    "right_hand_load": 54.52272473854014,
+    "ice_fingers": [
+      1,
+      6,
+      3
+    ]
+  },
+  "enthium_wb_c_i": {
+    "layout": "jyou-qldpficae.khtnsx'/,:bmgwv r",
+    "same_finger_bigrams": 0.9675023382739794,
+    "same_finger_skipgrams": 5.443518370437022,
+    "redirects": 1.3760687160221026,
+    "pinky_load": 17.62161817895344,
+    "right_hand_load": 56.04063242483043,
+    "ice_fingers": [
+      0,
+      1,
+      3
+    ]
+  },
+  "enthium_wb_c_k": {
+    "layout": "jyou-qldpfkiae.chtnsx'/,:bmgwv r",
+    "same_finger_bigrams": 1.6178294109963371,
+    "same_finger_skipgrams": 6.492606237397363,
+    "redirects": 1.1919516773615166,
+    "pinky_load": 11.121909751576917,
+    "right_hand_load": 58.399161444145015,
+    "ice_fingers": [
+      1,
+      6,
+      3
+    ]
+  },
+  "enthium_wb_c_l": {
+    "layout": "jyou-qcdpfliae.khtnsx'/,:bmgwv r",
+    "same_finger_bigrams": 1.3626377942619299,
+    "same_finger_skipgrams": 5.363230604828348,
+    "redirects": 2.196112404338998,
+    "pinky_load": 14.553337979881361,
+    "right_hand_load": 54.96773321584058,
+    "ice_fingers": [
+      1,
+      6,
+      3
+    ]
+  },
+  "enthium_wb_c_m": {
+    "layout": "jyou-qldpfmiae.khtnsx'/,:bcgwv r",
+    "same_finger_bigrams": 1.7316946797635238,
+    "same_finger_skipgrams": 5.800840203782309,
+    "redirects": 1.857468640036072,
+    "pinky_load": 12.794381373354845,
+    "right_hand_load": 56.726689822367085,
+    "ice_fingers": [
+      1,
+      6,
+      3
+    ]
+  },
+  "enthium_wb_c_n": {
+    "layout": "jyou-qldpfniae.khtcsx'/,:bmgwv r",
+    "same_finger_bigrams": 0.8344597030138976,
+    "same_finger_skipgrams": 5.244683479946808,
+    "redirects": 2.7878994317529675,
+    "pinky_load": 17.281639966122135,
+    "right_hand_load": 52.2394312295998,
+    "ice_fingers": [
+      1,
+      8,
+      3
+    ]
+  },
+  "enthium_wb_c_o": {
+    "layout": "jycu-qldpfoiae.khtnsx'/,:bmgwv r",
+    "same_finger_bigrams": 1.9646907642297624,
+    "same_finger_skipgrams": 5.5180194519007255,
+    "redirects": 1.7462311057216107,
+    "pinky_load": 18.13604518901343,
+    "right_hand_load": 56.04063242483043,
+    "ice_fingers": [
+      1,
+      2,
+      3
+    ]
+  },
+  "enthium_wb_c_p": {
+    "layout": "jyou-qldcfpiae.khtnsx'/,:bmgwv r",
+    "same_finger_bigrams": 1.314322930332738,
+    "same_finger_skipgrams": 5.949596274431376,
+    "redirects": 1.4369535487485499,
+    "pinky_load": 12.45534677750673,
+    "right_hand_load": 57.0657244182152,
+    "ice_fingers": [
+      1,
+      8,
+      3
+    ]
+  },
+  "enthium_wb_c_q": {
+    "layout": "jyou-cldpfqiae.khtnsx'/,:bmgwv r",
+    "same_finger_bigrams": 1.8680420349215328,
+    "same_finger_skipgrams": 6.729519273755484,
+    "redirects": 0.9800099941939017,
+    "pinky_load": 10.402287677834805,
+    "right_hand_load": 59.11878351788713,
+    "ice_fingers": [
+      1,
+      6,
+      3
+    ]
+  },
+  "enthium_wb_c_s": {
+    "layout": "jyou-qldpfsiae.khtncx'/,:bmgwv r",
+    "same_finger_bigrams": 0.8859600680669938,
+    "same_finger_skipgrams": 5.565955990518869,
+    "redirects": 1.7650421859935221,
+    "pinky_load": 13.480438770891505,
+    "right_hand_load": 52.62272873527486,
+    "ice_fingers": [
+      1,
+      9,
+      3
+    ]
+  },
+  "enthium_wb_c_t": {
+    "layout": "jyou-qldpftiae.khcnsx'/,:bmgwv r",
+    "same_finger_bigrams": 0.9431988709730794,
+    "same_finger_skipgrams": 4.59297519683867,
+    "redirects": 2.5283294362985873,
+    "pinky_load": 19.469570260341268,
+    "right_hand_load": 50.05150093538066,
+    "ice_fingers": [
+      1,
+      7,
+      3
+    ]
+  },
+  "enthium_wb_c_v": {
+    "layout": "jyou-qldpfviae.khtnsx'/,:bmgwc r",
+    "same_finger_bigrams": 1.0752994020908786,
+    "same_finger_skipgrams": 6.150358355101318,
+    "redirects": 2.016616291178296,
+    "pinky_load": 13.480438770891505,
+    "right_hand_load": 58.12349249919602,
+    "ice_fingers": [
+      1,
+      9,
+      3
+    ]
+  },
+  "wb_sfbs_changes": {
+    "added": [
+      [
+        "bl",
+        0.22723067681346953
+      ],
+      [
+        "wn",
+        0.08733709945951267
+      ],
+      [
+        "mb",
+        0.0825640578486146
+      ],
+      [
+        "sf",
+        0.016236738891984577
+      ],
+      [
+        "lb",
+        0.009700853095528187
+      ],
+      [
+        "fs",
+        0.007631533912480567
+      ],
+      [
+        "bm",
+        0.005705032078262951
+      ],
+      [
+        "hb",
+        0.005529115429704104
+      ],
+      [
+        "nw",
+        0.005429511055520088
+      ],
+      [
+        "kb",
+        0.0021220328826157763
+      ],
+      [
+        "pw",
+        0.0011566366405245437
+      ],
+      [
+        "bh",
+        0.0009709127920460397
+      ],
+      [
+        "wp",
+        0.0009666221420811899
+      ],
+      [
+        "vf",
+        0.0004164995215879319
+      ],
+      [
+        "jc",
+        0.0003365095472432297
+      ]
+    ],
+    "removed": [
+      [
+        "nf",
+        0.06298061198404709
+      ],
+      [
+        "ws",
+        0.043906834040304245
+      ],
+      [
+        "sw",
+        0.03144954481735747
+      ],
+      [
+        "bc",
+        0.004789591260762472
+      ],
+      [
+        "pf",
+        0.003049426225018338
+      ],
+      [
+        "cb",
+        0.0017230024358847336
+      ],
+      [
+        "xb",
+        0.0012510309397512419
+      ],
+      [
+        "fp",
+        0.0010496768664007847
+      ],
+      [
+        "fn",
+        0.0009028753426034196
+      ],
+      [
+        "kj",
+        0.0003263958723260835
+      ],
+      [
+        "jm",
+        0.0002090159482876891
+      ],
+      [
+        "mj",
+        0.00017591664855884685
+      ],
+      [
+        "bx",
+        0.00015446339873459724
+      ],
+      [
+        "lj",
+        0.00015170512375719373
+      ],
+      [
+        "jk",
+        0.00013331662390783693
+      ]
+    ]
+  },
+  "wb_redirects_changes": {
+    "added": [
+      [
+        "oje",
+        0.016725559425602176
+      ],
+      [
+        "joy",
+        0.013186278358239167
+      ],
+      [
+        "joi",
+        0.010802228665846507
+      ],
+      [
+        "nfl",
+        0.010440147460372631
+      ],
+      [
+        "bst",
+        0.006954384169338325
+      ],
+      [
+        "ndf",
+        0.002124404855672941
+      ],
+      [
+        "jea",
+        0.00196259720380413
+      ],
+      [
+        "jui",
+        0.0018141689960174947
+      ],
+      [
+        "jai",
+        0.0017907549688736873
+      ],
+      [
+        "jay",
+        0.0015725027872831986
+      ],
+      [
+        "ngf",
+        0.0014897174770247372
+      ],
+      [
+        "nkf",
+        0.0010870798316767658
+      ],
+      [
+        "pdf",
+        0.0010565579748643026
+      ],
+      [
+        "jua",
+        0.0010389974545064473
+      ],
+      [
+        "shw",
+        0.0009599751128960977
+      ]
+    ],
+    "removed": [
+      [
+        "bei",
+        0.033606654888659646
+      ],
+      [
+        "bea",
+        0.03081327782887792
+      ],
+      [
+        "abi",
+        0.030666103943973993
+      ],
+      [
+        "bui",
+        0.02665101639643861
+      ],
+      [
+        "ibe",
+        0.015901469291665676
+      ],
+      [
+        "ibu",
+        0.013382370835568553
+      ],
+      [
+        "buy",
+        0.013247322071864093
+      ],
+      [
+        "obe",
+        0.012472150530353046
+      ],
+      [
+        "oub",
+        0.012179893298683023
+      ],
+      [
+        "ebo",
+        0.009641143784090207
+      ],
+      [
+        "iab",
+        0.009429163216913238
+      ],
+      [
+        "abe",
+        0.00934595979902721
+      ],
+      [
+        "obi",
+        0.00908004334789397
+      ],
+      [
+        "ybe",
+        0.008989313992711715
+      ],
+      [
+        "boy",
+        0.007915195497489558
+      ]
+    ]
+  }
+}

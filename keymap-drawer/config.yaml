@@ -1,0 +1,20 @@
+draw_config:
+  separate_combo_diagrams: true
+  shrink_wide_legends: 6
+parse_config:
+  zmk_combos:
+    alt_one_combo: {hidden: true}
+    alt_two_combo: {hidden: true}
+  raw_binding_map:
+    "&swapwin": "Swap Win"
+    "&swapapp": "Swap App"
+    "&go_dec": ":="
+    "&bootloader": "Boot"
+    "&sys_reset": "Reset"
+    "&caps_word": "Caps Word"
+    "&mmv MOVE_UP": "Mouse Up"
+    "&mmv MOVE_DOWN": "Mouse Down"
+    "&mmv MOVE_LEFT": "Mouse Left"
+    "&mmv MOVE_RIGHT": "Mouse Right"
+    "&mkp LCLK": "Left Click"
+    "&mkp RCLK": "Right Click"

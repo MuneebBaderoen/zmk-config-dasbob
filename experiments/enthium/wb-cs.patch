@@ -1,0 +1,15 @@
+--- a/zmk-config/dasbob.keymap
++++ b/zmk-config/dasbob.keymap
+@@ -291,9 +291,9 @@
+ 
+         AltOne { // 1
+             bindings = <
+-                &kp B             &kp Y             &kp O             &kp U             &kp MINUS       /**/  &kp Q             &kp L           &kp D             &kp P             &kp W
+-                LALT_T(C)         LCTL_T(I)         SPC_T(A)          LSFT_T(E)         &kp DOT         /**/  &kp K             RSFT_T(H)       RCMD_T(T)         RCTL_T(N)         RALT_T(S)
+-                &kp X             &kp QUOTE         &lt 6 SLASH       &lt 10 COMMA      &kp COLON       /**/  &kp J             &kp M           &lt 6 G           &kp F             &kp V
++                &kp J             &kp Y             &kp O             &kp U             &kp MINUS       /**/  &kp Q             &kp L           &kp D             &kp P             &kp F
++                LALT_T(S)         LCTL_T(I)         SPC_T(A)          LSFT_T(E)         &kp DOT         /**/  &kp K             RSFT_T(H)       RCMD_T(T)         RCTL_T(N)         RALT_T(C)
++                &kp X             &kp QUOTE         &lt 6 SLASH       &lt 10 COMMA      &kp COLON       /**/  &kp B             &kp M           &lt 6 G           &kp W             &kp V
+                                                     &sl 16            &lt 3 SPACE       &sl 6           /**/  &sk LSHIFT        &lt 13 R        &sl 5
+             >;
+         };
