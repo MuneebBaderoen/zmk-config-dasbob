@@ -7,9 +7,9 @@
 #define OUTPUT_SOURCE_LAYER_STATE_CHANGE 1
 #define AS(keycode)      &as LS(keycode) keycode  // Autoshift preprocessor macro
 
-#define LCMD_T(keycode)  &lt 4 keycode              // Mod-tap preprocessor macro for Command (GUI)
+#define LCMD_T(keycode)  &lt 3 keycode              // Mod-tap preprocessor macro for Command (GUI)
 #define LALT_T(keycode)  &kp keycode              // Hold-tap preprocessor macro for Alt
-#define LSFT_T(keycode)  &lt 4 keycode              // Hold-tap preprocessor macro for Shift
+#define LSFT_T(keycode)  &lt 3 keycode              // Hold-tap preprocessor macro for Shift
 #define LCTL_T(keycode)  &kp keycode              // Hold-tap preprocessor macro for Control
 
 #define RCMD_T(keycode)  &kp keycode              // Hold-tap preprocessor macro for Right Command (Right GUI)
@@ -19,8 +19,6 @@
 
 #define SPC_T(keycode)   &spc_t SPACE keycode     // Hold Space, tap keycode
 
-// #define LMOD(keycode) &sml keycode 11
-// #define RMOD(keycode) &sml keycode 12
 
 #define LMOD(keycode) &sk keycode
 #define RMOD(keycode) &sk keycode
@@ -225,8 +223,8 @@
         beep_guard: beep_guard {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&macro_press &macro_wait_time 120 &mo 15
-                        &macro_release &macro_wait_time 0 &mo 15>;
+            bindings = <&macro_press &macro_wait_time 120 &mo 11
+                        &macro_release &macro_wait_time 0 &mo 11>;
         };
 
     };
@@ -238,12 +236,6 @@
             timeout-ms = <50>; // Max delay between keys.
             key-positions = <32 33>;
             bindings = <&tog 1>;
-        };
-
-        alt_two_combo {
-            timeout-ms = <50>; // Max delay between keys.
-            key-positions = <32 34>;
-            bindings = <&tog 2>;
         };
 
         bootloader_combo {
@@ -283,153 +275,108 @@
         Base { // 0
             bindings = <
                 &kp Q             &kp Y             &kp O             &kp U             &kp MINUS         /**/  &kp J             &kp G             &kp N           &kp F             &kp K
-                &kp H             &kp I             &kp E             &kp A             &kp DOT           /**/  &kp P             &kp D             &kp R           &kp S             &kp L
-                &kp X             &kp QUOTE         &kp SLASH         &kp COMMA         &kp COLON         /**/  &kp B             &kp C             &kp M           &kp W             &kp V
-                                                    &sl 16            &lt 3 T           &sl 6             /**/  &sl 14            &lt 13 SPACE      &sl 5
+                &kp H             &kp I             &lt 3 E           &lt 3 A           &kp DOT           /**/  &kp P             &kp D             &kp R           &kp S             &kp L
+                &kp X             &kp QUOTE         &lt 8 SLASH       &lt 8 COMMA       &kp COLON         /**/  &kp B             &kp C             &kp M           &kp W             &kp V
+                                                    &sl 4             &lt 2 T           &sl 6             /**/  &sl 10            &lt 9  SPACE      &sl 5
             >;
         };
 
         AltOne { // 1
             bindings = <
                 &kp Q             &kp Y             &kp O             &kp U             &kp MINUS       /**/  &kp J             &kp L           &kp D           &kp P             &kp F
-                &kp C             &kp I             &kp A             &kp E             &kp DOT         /**/  &kp K             &kp H           &kp T           &kp N             &kp S
-                &kp X             &kp QUOTE         &kp SLASH         &kp COMMA         &kp COLON       /**/  &kp B             &kp M           &kp G           &kp W             &kp V
-                                                    &sl 16            &lt 3 R           &sl 6           /**/  &sl 14            &lt 13 SPACE    &sl 5
+                &kp C             &kp I             &lt 3 A           &lt 3 E           &kp DOT         /**/  &kp K             &kp H           &kp T           &kp N             &kp S
+                &kp X             &kp QUOTE         &lt 8 SLASH       &lt 8 COMMA       &kp COLON       /**/  &kp B             &kp M           &kp G           &kp W             &kp V
+                                                    &sl 4             &lt 2 R           &sl 6           /**/  &sl 10            &lt 9  SPACE    &sl 5
             >;
         };
 
-        AltTwo { // 2
+        Shortcut { // 2
             bindings = <
-                &kp Q             &kp UP            &kp UP            &kp R             &kp T             /**/  &kp Y             &kp U             &kp I             &kp O             &kp P
-                &kp LEFT          &kp LEFT          &kp RIGHT         &kp RIGHT         &kp G             /**/  &kp H             &kp J             &lt 6 K           &kp L             &kp SEMI
-                &kp Z             &kp DOWN          &kp DOWN          &kp V             &kp B             /**/  &kp N             &kp M             &kp COMMA         &kp DOT           &kp SLASH
-                                                    &trans            &kp SPACE         &trans            /**/  &trans            &trans            &trans
-            >;
-        };
-
-        Shortcut { // 3
-            bindings = <
-                &kp LG(Q)         &swapwin          &swapapp          &trans            &trans            /**/  &kp LC(F1)        &kp LC(O)         &kp LC(RBKT)      &kp LS(LC(RBKT))  &kp LC(I)
-                &mt LALT ESC      &mt LCTL LG(A)    &mt LGUI LG(S)    &mt LSHFT LG(C)   &trans            /**/  &kp LC(F2)        &kp LEFT          &kp DOWN          &kp UP            &kp RIGHT
-                &kp LG(W)         &kp LG(Z)         &kp LG(X)         &kp LG(V)         &trans            /**/  &kp LA(BSPC)      &kp BSPC          &kp ENTER         &kp ESC           &kp ESC
+                &kp LG(Q)         &swapwin          &swapapp          &none             &none             /**/  &kp LC(F1)        &kp LC(O)         &kp LC(RBKT)      &kp LS(LC(RBKT))  &kp LC(I)
+                &mt LALT ESC      &mt LCTL LG(A)    &mt LGUI LG(S)    &mt LSHFT LG(C)   &none             /**/  &kp LC(F2)        &kp LEFT          &kp DOWN          &kp UP            &kp RIGHT
+                &kp LG(W)         &kp LG(Z)         &kp LG(X)         &kp LG(V)         &none             /**/  &kp LA(BSPC)      &kp BSPC          &kp ENTER         &kp ESC           &kp ESC
                                                     &trans            &trans            &trans            /**/  &trans            &trans            &trans
             >;
         };
 
-        Num { // 4
+        Num { // 3
             bindings = <
-                &trans            &trans            &trans            &trans            &trans            /**/  &kp MINUS         &kp N7            &kp N8            &kp N9            &kp SLASH
-                &sk LALT          &sk LCTRL         &sk LSHFT         &sk LSHFT         &trans            /**/  &kp PLUS          &kp N4            &kp N5            &kp N6            &kp ASTERISK
-                &trans            &trans            &trans            &trans            &trans            /**/  &kp N0            &kp N1            &kp N2            &kp N3            &kp COMMA
+                &none             &none             &none             &none             &none             /**/  &kp MINUS         &kp N7            &kp N8            &kp N9            &none
+                &none             &none             &sk LSHFT         &sk LSHFT         &none             /**/  &kp PLUS          &kp N4            &kp N5            &kp N6            &none
+                &none             &none             &none             &none             &none             /**/  &kp N0            &kp N1            &kp N2            &kp N3            &none
+                                                    &trans            &trans            &trans            /**/  &trans            &trans            &trans
+            >;
+        };
+
+        Nav { // 4
+            bindings = <
+                &none             &none             &none             &none             &none             /**/  &kp LC(F1)        &kp LC(O)         &kp LC(RBKT)      &kp LS(LC(RBKT))  &kp LC(I)
+                &sk LALT          &sk LCTRL         &sk LCMD          &sk LSHFT         &none             /**/  &kp LC(F2)        &kp LEFT          &kp DOWN          &kp UP            &kp RIGHT
+                &none             &none             &kp LS(TAB)       &kp TAB           &none             /**/  &kp LA(BSPC)      &kp BSPC          &kp ENTER         &kp ESC           &kp ESC
                                                     &trans            &trans            &trans            /**/  &trans            &trans            &trans
             >;
         };
 
         Sym { // 5
             bindings = <
-                &none          &kp PIPE          &kp GRAVE         &kp BSLH          &kp UNDER         /**/  &trans            &trans            &trans            &trans            &trans
-                &kp LT         &kp EXCL          &go_eq            &kp GT            &kp PLUS          /**/  &trans            RMOD(RSHFT)       RMOD(RGUI)        RMOD(RCTRL)       RMOD(RALT)
-                &kp QMARK      &kp LBKT          &lp_qmrk          &kp LBRC          &kp SEMI          /**/  &trans            &kp RBRC          &kp RPAR          &kp RBKT          &trans
-                                                 &sl 8             &trans            &trans            /**/  &trans            &trans            &trans
+                &none          &kp PIPE          &kp GRAVE         &kp BSLH          &kp UNDER         /**/  &none             &none             &none             &none             &none
+                &kp LT         &kp EXCL          &go_eq            &kp GT            &kp PLUS          /**/  &none             RMOD(RSHFT)       RMOD(RGUI)        RMOD(RCTRL)       RMOD(RALT)
+                &kp QMARK      &kp LBKT          &lp_qmrk          &kp LBRC          &kp SEMI          /**/  &none             &kp RBRC          &kp RPAR          &kp RBKT          &none
+                                                 &sl 7             &trans            &trans            /**/  &trans            &trans            &trans
             >;
         };
 
         Win { // 6
             bindings = <
                 &none             &kp LG(LC(I))     &kp LG(LC(O))     &none             &none             /**/  &none             &kp LG(LEFT)      &kp LC(LS(TAB))   &kp LC(TAB)       &kp LG(RIGHT)
-                &kp LG(LC(H))     &kp LG(LC(J))     &kp LG(LC(K))     &kp LG(LC(L))     &sl 9             /**/  &sl 9             &kp LC(H)         &kp LC(J)         &kp LC(K)         &kp LC(L)
-                &none             &none             &none             &none             &sl 10            /**/  &sl 10            &kp LC(LS(H))     &kp LC(LS(J))     &kp LC(LS(K))     &kp LC(LS(L))
-                                                    &trans            &none             &none             /**/  &none             &none             &none
+                &kp LG(LC(H))     &kp LG(LC(J))     &kp LG(LC(K))     &kp LG(LC(L))     &none             /**/  &none             &kp LC(H)         &kp LC(J)         &kp LC(K)         &kp LC(L)
+                &none             &none             &none             &none             &sl 8             /**/  &sl 8             &kp LC(LS(H))     &kp LC(LS(J))     &kp LC(LS(K))     &kp LC(LS(L))
+                                                    &trans            &trans            &trans            /**/  &trans            &trans            &trans
             >;
         };
 
-        Control { // 7
+        Media { // 7
             bindings = <
                 &none             &none             &none             &none             &none             /**/  &none             &none             &none             &none             &none
-                LMOD(LALT)        LMOD(LCTRL)       LMOD(LGUI)        LMOD(LSHFT)       &trans            /**/  &trans            &kp LEFT          &kp DOWN          &kp UP            &kp RIGHT
-                &trans            &trans            &kp LS(TAB)       &kp TAB           &trans            /**/  &kp LA(BSPC)      &kp BSPC          &kp ENTER         &kp ESC           &kp ESC
-                                                    &trans            &trans            &trans            /**/  &trans            &trans            &sl 8
+                &none             &kp C_PREV        &kp C_PLAY_PAUSE  &kp C_NEXT        &none             /**/  &none             &none             &none             &none             &none
+                &none             &kp C_VOL_DN      &kp C_MUTE        &kp C_VOL_UP      &none             /**/  &none             &none             &none             &none             &none
+                                                    &sl 7             &trans            &trans            /**/  &trans            &trans            &sl 7
             >;
         };
 
-        Media { // 8
+        Function { // 8
             bindings = <
-                &trans            &trans            &trans            &trans            &trans            /**/  &none             &none             &none             &none             &none
-                &trans            &kp C_PREV        &kp C_PLAY_PAUSE  &kp C_NEXT        &trans            /**/  &trans            &trans            &trans            &trans            &trans
-                &trans            &kp C_VOL_DN      &kp C_MUTE        &kp C_VOL_UP      &trans            /**/  &trans            &kp LS(F11)       &kp F10           &kp F8            &kp F11
-                                                    &sl 8             &trans            &trans            /**/  &trans            &trans            &sl 8
-            >;
-        };
-
-        SymTwo { // 9
-            bindings = <
-                &trans            &trans            &trans            &trans            &bootloader       /**/  &bootloader       &bt BT_CLR        &bt BT_SEL 0      &bt BT_SEL 1      &bt BT_SEL 2
-                &trans            &trans            &trans            &trans            &trans            /**/  &trans            &trans            &trans            &trans            &trans
-                &trans            &trans            &trans            &trans            &trans            /**/  &trans            &trans            &trans            &trans            &trans
+                &none             &none             &none             &none             &none             /**/  &none             &kp F7            &kp F8            &kp F9            &kp F10
+                &none             &none             &none             &none             &none             /**/  &none             &kp F4            &kp F5            &kp F6            &kp F11
+                &none             &none             &none             &none             &none             /**/  &none             &kp F1            &kp F2            &kp F3            &kp F12
                                                     &trans            &trans            &trans            /**/  &trans            &trans            &trans
             >;
         };
 
-        Function { // 10
+        Hotkey { // 9
             bindings = <
-                &trans            &trans            &trans            &trans            &trans            /**/  &trans            &kp F7            &kp F8            &kp F9            &kp F10
-                &trans            &trans            &trans            &trans            &trans            /**/  &trans            &kp F4            &kp F5            &kp F6            &kp F11
-                &trans            &trans            &trans            &trans            &trans            /**/  &trans            &kp F1            &kp F2            &kp F3            &kp F12
-                                                    &trans            &trans            &trans            /**/  &trans            &trans            &trans
+                &kp LG(LC(F1))        &kp LG(LC(F2))        &kp LG(LC(F3))        &kp LG(LC(F4))        &kp LG(LC(F5))        /**/  &none        &none             &none             &none             &none
+                &kp LG(LC(F6))        &kp LG(LC(F7))        &kp LG(LC(F8))        &kp LG(LC(F9))        &kp LG(LC(F10))       /**/  &none        &kp LS(F13)       &kp F10           &kp F8            &kp F13
+                &kp LG(LC(F11))       &kp LG(LC(F12))       &kp LG(LC(F13))       &kp LG(LC(F14))       &kp LG(LC(F15))       /**/  &none        &none             &none             &none             &none
+                                                            &trans                &trans                &trans                /**/  &trans       &trans            &trans
             >;
         };
 
-        LMod { // 11
+        Mouse { // 10
             bindings = <
-                &trans            &trans            &trans            &trans            &trans            /**/  &trans            &trans            &trans            &trans            &trans
-                LMOD(LALT)        LMOD(LCTRL)       LMOD(LGUI)        LMOD(LSHFT)       &trans            /**/  &trans            &trans            &trans            &trans            &trans
-                &trans            &trans            &trans            &trans            &trans            /**/  &trans            &trans            &trans            &trans            &trans
-                                                    &trans            &trans            &trans            /**/  &trans            &trans            &trans
-            >;
-        };
-
-        RMod { // 12
-            bindings = <
-                &trans            &trans            &trans            &trans            &trans            /**/  &trans            &trans            &trans            &trans            &trans
-                &trans            &trans            &trans            &trans            &trans            /**/  &trans            RMOD(RSHFT)       RMOD(RGUI)        RMOD(RCTRL)       RMOD(RALT)
-                &trans            &trans            &trans            &trans            &trans            /**/  &trans            &trans            &trans            &trans            &trans
-                                                    &trans            &trans            &trans            /**/  &trans            &trans            &trans
-            >;
-        };
-
-        Hotkey { // 13
-            bindings = <
-                &kp LG(LC(F1))        &kp LG(LC(F2))        &kp LG(LC(F3))        &kp LG(LC(F4))        &kp LG(LC(F5))        /**/  &kp LG(LC(F11))   &kp LG(LC(F12))   &kp LG(LC(F13))   &kp LG(LC(F14))   &kp LG(LC(F15))
-                &kp LG(LC(F6))        &kp LG(LC(F7))        &kp LG(LC(F8))        &kp LG(LC(F9))        &kp LG(LC(F10))       /**/  &kp LG(LC(F16))   &kp LG(LC(F17))   &kp LG(LC(F18))   &kp LG(LC(F19))   &kp LG(LC(F20))
-                &trans                &trans                &trans                &trans                &trans                /**/  &trans            &trans            &trans            &trans            &trans
-                                                            &trans                &trans                &trans                /**/  &trans            &trans            &trans
-            >;
-        };
-
-        Mouse { // 14
-            bindings = <
-                &trans    &trans            &mmv MOVE_UP      &trans            &trans            /**/  &trans            &trans            &trans         &trans            &trans
-                &trans    &mmv MOVE_LEFT    &mmv MOVE_DOWN    &mmv MOVE_RIGHT   &mkp LCLK         /**/  &trans            &trans            &trans         &trans            &trans
-                &trans    &trans            &mkp RCLK         &mkp LCLK         &trans            /**/  &trans            &trans            &trans         &trans            &trans
+                &none     &none             &mmv MOVE_UP      &none             &none             /**/  &none             &none             &none          &none             &none
+                &none     &mmv MOVE_LEFT    &mmv MOVE_DOWN    &mmv MOVE_RIGHT   &none             /**/  &none             &none             &none          &none             &none
+                &none     &none             &mkp RCLK         &mkp LCLK         &none             /**/  &none             &none             &none          &none             &none
                                             &trans            &trans            &trans            /**/  &trans            &trans            &trans
             >;
         };
 
-        BeepMute { // 15
+        BeepMute { // 11
             bindings = <
-                &trans            &trans            &trans            &trans            &trans            /**/  &trans            &trans            &trans            &trans            &trans
-                &trans            &none             &trans            &trans            &trans            /**/  &trans            &trans            &trans            &none             &trans
-                &trans            &trans            &trans            &trans            &trans            /**/  &trans            &trans            &trans            &trans            &trans
+                &none             &none             &none             &none             &none             /**/  &none             &none             &none             &none             &none
+                &none             &none             &none             &none             &none             /**/  &none             &none             &none             &none             &none
+                &none             &none             &none             &none             &none             /**/  &none             &none             &none             &none             &none
                                                     &trans            &trans            &trans            /**/  &trans            &trans            &trans
-            >;
-        };
-
-        NumV2 { // 16
-            bindings = <
-                &trans            &trans            &trans            &trans            &trans            /**/  &kp N5         &kp N6            &kp N7            &kp N8            &kp N9
-                &sk LALT          &sk LCTRL         &sk LCMD          &sk LSHFT         &trans            /**/  &kp N0         &kp N1            &kp N2            &kp N3            &kp N4
-                &trans            &trans            &kp LS(TAB)       &kp TAB           &trans            /**/  &kp LA(BSPC)   &kp BSPC          &kp ENTER         &kp ESC           &kp ESC
-                                                    &trans            &trans            &trans            /**/  &trans         &trans            &sl 8
             >;
         };
     };

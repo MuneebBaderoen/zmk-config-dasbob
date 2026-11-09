@@ -4,7 +4,6 @@ draw_config:
 parse_config:
   zmk_combos:
     alt_one_combo: {hidden: true}
-    alt_two_combo: {hidden: true}
   raw_binding_map:
     "&swapwin": "Swap Win"
     "&swapapp": "Swap App"

@@ -17,22 +17,24 @@ in display order. Use the exact node names from `zmk-config/dasbob.keymap`.
 Set `HIDE_LAYERS` in the same file to exclude names from that list. Hiding takes
 precedence over `DRAW_LAYERS`; clear `HIDE_LAYERS` to show the whole list.
 This configuration affects rendering only; it does not change the firmware,
-layer numbering, or bindings. The initial selection excludes the unused `Num`,
-`Control`, `LMod`, and `RMod` layers, plus the internal `BeepMute` layer.
-`AltOne` and `AltTwo` are also hidden, along with their activation combos.
+layer numbering, or bindings. The initial selection hides `Num`
+and the internal `BeepMute` layer. Hold either the left middle-finger or index-finger
+home-row key on `Base` or `AltOne` to activate `Num`; tapping keeps the letter.
+`Nav`, defined immediately after it, provides navigation and shortcuts.
+`AltOne` is also hidden, along with its activation combo.
 Combo visibility is configured by node name under `parse_config.zmk_combos`
 in `keymap-drawer/config.yaml` using `hidden: true`.
 
 For a one-off selection:
 
 ```sh
-make render-keymap DRAW_LAYERS='Base Sym NumV2'
+make render-keymap DRAW_LAYERS='Base Sym Nav'
 ```
 
 To override the hidden layers for one render:
 
 ```sh
-make render-keymap HIDE_LAYERS='Num Control LMod RMod BeepMute AltTwo'
+make render-keymap HIDE_LAYERS='Num BeepMute'
 ```
 
 Hidden layers can still appear as legends on keys or combos that activate them.
